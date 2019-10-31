@@ -1,4 +1,4 @@
-# Jamf-Switcher
+# Jamf Switcher
 <p align="center"><img src="/../assets/images/Jamf%20Switcher-512x512.png" width="256" height="256"></p>
 
 Jamf Switcher is an app which points either Jamf Pro applications or your default browser to a particular Jamf deployment & is configured by Self Service Bookmarks.
@@ -30,17 +30,14 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 - Select an entry & press CMD + O to open the URL in your default browser.
 - Double click & a window will appear which will either:
 
-	- Open '/Applications/Jamf Pro/' to allow you select a Jamf Pro application, if the Jamf Pro folder is in /Applications/Jamf Pro/.
+	- Open /Applications/Jamf Pro/ to allow you select a Jamf Pro application, if the Jamf Pro folder is in /Applications/Jamf Pro/.
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.10.31.png" width="512"></p>
 
-	- Open '/Applications/', if the Jamf Pro folder cannot be found at /Applications/Jamf Pro/.
-<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.06.38.png" width="512"></p>
+	- Open /Applications/, if the Jamf Pro folder cannot be found at /Applications/Jamf Pro/.
+<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.06.38.png"></p>
 14. With an app selected, ~/Library/Preferences/com.jamfsoftware.jss.plist is amended as per:
 
-	- `allowInvalidCertificate` is set to `TRUE`
-	- `url` is set to the URL of the entry selected
+	- 'allowInvalidCertificate' is set to 'TRUE'
+	- 'url' is set to the URL of the entry selected
 
 15. The selected app is launched.
-
-# Support
-Please log an issue.
