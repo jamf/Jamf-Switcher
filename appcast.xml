@@ -13,10 +13,10 @@
 	    ]]></description>
             <pubDate>Thu, 31 October 2019 20:00 +0000</pubDate>
             <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.0/Jamf.Switcher.zip"
-            sparkle:version="40"
-            length="1623481" 
+            sparkle:version="47"
+            length="5823406" 
             type="application/octet-stream" 
-            sparkle:dsaSignature="MC0CFQCNRj2tr7z56cXUjRUQzVBxAbpA7QIUVTZUBMwT4WzWShyXMqv1m41+/vA=" />
+            sparkle:edSignature="wracsGlOaaeJVL+6OvZ9x3fLe9ebcXK8g34uZ155YwqqMAOwrGcn7p+n/STdO5NsnHmcpFo0PLRLVsWQ7mHHDA==" />
             <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
         </item>
     </channel>
