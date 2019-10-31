@@ -39,3 +39,10 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 	- 'url' is set to the URL of the entry selected
 
 15. The selected app is launched.
+
+# Alternatives
+Other folks have created their own apps which reach the same end goal, find the below:
+
+- [JamfProSwitcher](https://github.com/ninxsoft/JamfProSwitcher)
+- [JSS Switcher](https://github.com/PhantomPhixer/Phixits/tree/master/JSS%20Switcher)
+- [Switch JSS](https://github.com/jason-tratta/SwitchJSS)
