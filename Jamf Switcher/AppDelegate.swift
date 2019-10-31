@@ -12,14 +12,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var showJSSMenuItem: NSMenuItem!
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationDidBecomeActive(_ notification: Notification) {
         let screenSize = NSScreen.main?.frame
-        let window = NSApplication.shared.mainWindow?.windowController?.window
-        let windowSize = CGSize(width: (window?.frame.width)!, height: (screenSize?.height)!  )
-        window?.setFrame(NSRect(origin: (window?.frame.origin)!, size: windowSize), display: true)
+        if let window = NSApplication.shared.mainWindow {
+            let windowSize = CGSize(width: (window.frame.width), height: (screenSize?.height)!  )
+            window.setFrame(NSRect(origin: (window.frame.origin), size: windowSize), display: true)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 }
+
+
+

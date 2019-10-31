@@ -27,7 +27,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction func showHelp(_ sender: Any?) {
-        NSWorkspace.shared.open(URL(string: "https://datajar.co.uk")!)
+        NSWorkspace.shared.open(URL(string: "https://github.com/dataJAR/Jamf-Switcher")!)
     }
 
     func webJSS() {
@@ -56,7 +56,7 @@ class ViewController: NSViewController {
         let arrayOfPlists = readPropertyList(listOfPlists: listOfPlists)
         for plist in arrayOfPlists {
             if let isJSS = plist["subtitle"]?.lowercased {
-                if isJSS  == "jss" || isJSS.contains("jamf") {
+                if isJSS.contains("jamf") || isJSS.contains("jps") || isJSS.contains("jss") {
                     var companyName = plist["title"] as! String
                     companyName = companyName.replacingOccurrences(of: " - ", with: " ")
                     let url = plist["url"] as! String
@@ -186,7 +186,6 @@ extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
        appDelegate.showJSSMenuItem.isEnabled = true
     }
-
 }
 
 extension ViewController: NSSearchFieldDelegate {
