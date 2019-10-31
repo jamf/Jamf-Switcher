@@ -6,7 +6,11 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-		<title>Version 1.0</title>
+	    <title>Version 1.0</title>
+	    <description><![CDATA[
+            <h2>1.0 (build 40)</h2>
+            <h2>Release!</h2>
+	    ]]>
             <pubDate>Thu, 31 October 2019 20:00 +0000</pubDate>
             <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.0/Jamf.Switcher.zip"
             sparkle:version="40"
