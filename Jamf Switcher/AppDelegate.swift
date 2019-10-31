@@ -6,11 +6,16 @@
 //
 
 import Cocoa
+import LetsMove
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var showJSSMenuItem: NSMenuItem!
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        PFMoveToApplicationsFolderIfNecessary()
+    }
 
     func applicationDidBecomeActive(_ notification: Notification) {
         let screenSize = NSScreen.main?.frame
