@@ -11,12 +11,33 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
     - Jamf
     - JPS
     - JSS
-4. Scope as needed.
-5. Launch Self Service & nvigate to Bookmarks, make sure that your Bookmarks are visible before proceeeding.
- <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2019.55.56.png" width="512"></p>
-6. On a device with the Self Service Bookmarks in scope, download the [latest version of Jamf Switcher](https://github.com/dataJAR/Jamf-Switcher/releases/latest)
+4. Enter the Jamf Pro Url in the URL field.
+5. Optionally set an icon.
+6. Scope as needed.
+7. Launch Self Service & nvigate to Bookmarks, make sure that your Bookmarks are visible before proceeeding.
+<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2019.55.56.png" width="512"></p>
+8. On a device with the Self Service Bookmarks in scope, download the [latest version of Jamf Switcher](https://github.com/dataJAR/Jamf-Switcher/releases/latest)
+9. Launch Jamf Switcher.
+10. On launch you might be asked to move to the Applications folder if not there already, please do so updates can be received:
+<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.28.33.png" width="512"></p>
+11. Choose to check for updates automatically or not:
+<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.32.23.png" width="512"></p>
+12. Jamf Switcher should now load showing a window listing details from the Bookmarks with the DESCRIPTION set as per 3, in the format of:
+    - DISPLAY NAME - URL
+<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.00.35.png" height="512"></p>    
+13. Now you can either:
 
-7. Launch Jamf Switcher.
+- Select an entry & press CMD + O to open the URL in your default browser.
+- Double click & a window will appear which will either:
 
-8. On launch you might be asked to move to the Applications folder if not there already, please do so updates can be received <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.28.33.png" width="512"></p>
-9. 
+	- Open "/Applications/Jamf Pro/" to allow you select a Jamf Pro application (if the Jamf Pro folder is in /Applications/Jamf Pro/).
+<p align="center"><img src="/../assets/images/images/Screenshot%202019-10-31%20at%2020.10.31.png" width="512"></p>
+
+	- Open "/Applications/" (if the Jamf Pro folder cannot be found at /Applications/Jamf Pro/).
+<p align="center"><img src="/../assets/images/images/Screenshot%202019-10-31%20at%2020.06.38.png" width="512"></p>
+14. With an app selected, ~/Library/Preferences/com.jamfsoftware.jss.plist is amended as per:
+
+	- `allowInvalidCertificate` is set to `TRUE`
+	- `url` is set to the URL of the entry selected
+
+15. The selected app is launched.
