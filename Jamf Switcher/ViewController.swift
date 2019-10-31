@@ -36,7 +36,6 @@ class ViewController: NSViewController {
         let stringSelected = filteredDataToShow[itemsSelected]
         let stringArray = stringSelected.components(separatedBy: " - ")
         let url = URL(string: stringArray[1])
-        
         NSWorkspace.shared.open(url!)
         myTableView.deselectRow(itemsSelected)
     }
@@ -71,9 +70,8 @@ class ViewController: NSViewController {
         myTableView.reloadData()
         appDelegate.showJSSMenuItem.isEnabled = false
     }
-    
+
     override func viewDidLoad() {
-    
         super.viewDidLoad()
         NSApplication.shared.windows.first?.styleMask = .titled
         myTableView.delegate = self
@@ -102,7 +100,7 @@ class ViewController: NSViewController {
     }
 
     func getListOfPlists() -> [String]{
-                do {
+        do {
             let filePaths = try FileManager.default.contentsOfDirectory(atPath: managedPluginsPath)
             let plistFilePaths = filePaths.filter{$0.contains(".plist")}
             return plistFilePaths
@@ -111,7 +109,7 @@ class ViewController: NSViewController {
             return[]
         }
     }
-    
+
     func openJamfApp() {
         let dialog = NSOpenPanel();
         dialog.message                 = "Please select a Jamf Pro Application:";
@@ -137,9 +135,9 @@ class ViewController: NSViewController {
             return
         }
     }
-    
+
     override func awakeFromNib() {
-                myTableView.doubleAction = #selector(tableViewDoubleClick(_:))
+        myTableView.doubleAction = #selector(tableViewDoubleClick(_:))
     }
 
     @objc func tableViewDoubleClick(_ sender:AnyObject){
