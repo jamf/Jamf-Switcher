@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>36</string>
+	<string>43</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -32,5 +32,7 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/dataJAR/Jamf-Switcher/appcast/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>5nvsscpeHUavkTt0DWR9ad+8E7gZxyNe6/Q7L4R1N+o=</string>
 </dict>
 </plist>
