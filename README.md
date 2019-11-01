@@ -11,6 +11,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
     - Jamf
     - JPS
     - JSS
+
 4. Enter the Jamf Pro URL in the URL field.
 5. Optionally set an icon.
 6. Scope as needed.
