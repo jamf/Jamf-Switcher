@@ -1,7 +1,7 @@
 # Jamf Switcher
 <p align="center"><img src="/../assets/images/Jamf%20Switcher-512x512.png" width="256" height="256"></p>
 
-Jamf Switcher is an app which points either Jamf Pro applications or your default browser to a particular Jamf deployment & is configured by Self Service Bookmarks.
+Jamf Switcher is an app which points either Jamf Pro applications or your default browser to a particular Jamf deployment and is configured by Self Service Bookmarks.
 
 # Usage
 1. Within Jamf Pro, navigate to Settings > Self Service > Bookmarks
@@ -11,10 +11,10 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
     - Jamf
     - JPS
     - JSS
-4. Enter the Jamf Pro Url in the URL field.
+4. Enter the Jamf Pro URL in the URL field.
 5. Optionally set an icon.
 6. Scope as needed.
-7. Launch Self Service & nvigate to Bookmarks, make sure that your Bookmarks are visible before proceeeding.
+7. Launch Self Service and navigate to Bookmarks, make sure that your Bookmarks are visible before proceeeding.
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2019.55.56.png" width="512"></p>
 8. On a device with the Self Service Bookmarks in scope, download the [latest version of Jamf Switcher](https://github.com/dataJAR/Jamf-Switcher/releases/latest)
 9. Launch Jamf Switcher.
@@ -27,7 +27,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.00.35.png" height="512"></p>    
 13. Now you can either:
 
-- Select an entry & press CMD + O to open the URL in your default browser.
+- Select an entry and press CMD + O to open the URL in your default browser.
 - Double click & a window will appear which will either:
 
 	* Open /Applications/Jamf Pro/ to allow you select a Jamf Pro application, if the Jamf Pro folder is in /Applications/Jamf Pro/ <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.10.31.png" width="512"></p>
