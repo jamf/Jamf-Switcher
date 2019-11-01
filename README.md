@@ -28,7 +28,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.28.33.png" width="512"></p>
 11. Choose to check for updates automatically or not:
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.32.23.png" width="512"></p>
-12. Jamf Switcher should now load showing a window listing details from the Bookmarks with the DESCRIPTION set as per 3, in the format of:
+12. Jamf Switcher should now load showing a window listing details from the Bookmarks with the DESCRIPTION (as set in step 3) in the format of:
     - DISPLAY NAME - URL
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.00.35.png" height="512"></p>    
 13. Now you can either:
