@@ -6,7 +6,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 # Usage
 1. Within Jamf Pro, navigate to Settings > Self Service > Bookmarks
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%2022.04.06.png" width="512"></p>
-2. Set DISPLAY NAME as wanted
+2. Set DISPLAY NAME as desired
 3. For DESCRIPTION, include one of the below (case doesn't matter):
     - Jamf
     - JPS
