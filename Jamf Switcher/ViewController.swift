@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  JSS Switcher
+//  Jamf Switcher
 //
 //  Copyright © 2019 dataJAR. All rights reserved.
 //

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  JSS Switcher
+//  Jamf Switcher
 //
 //  Copyright © 2019 dataJAR. All rights reserved.
 //
@@ -29,6 +29,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 }
-
-
-
