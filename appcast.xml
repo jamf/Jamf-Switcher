@@ -6,18 +6,20 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-	    <title>Version 1.0</title>
-	    <description><![CDATA[
+        <title>Version 1.0</title>
+        <description><![CDATA[
+            <h2>1.0.1 (build 48)</h2>
+            <h2>Updated bundle identifier</h2>
             <h2>1.0 (build 40)</h2>
             <h2>Release!</h2>
-	    ]]></description>
-            <pubDate>Thu, 31 October 2019 20:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.0/Jamf.Switcher.zip"
-            sparkle:version="47"
-            length="5823406" 
+        ]]></description>
+            <pubDate>Saturday, 9 November 2019 11:30 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.0.1/Jamf.Switcher.zip"
+            sparkle:version="48"
+            length="5823531" 
             type="application/octet-stream" 
-            sparkle:edSignature="wracsGlOaaeJVL+6OvZ9x3fLe9ebcXK8g34uZ155YwqqMAOwrGcn7p+n/STdO5NsnHmcpFo0PLRLVsWQ7mHHDA==" />
-            <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
+            sparkle:edSignature="f4bO3R598eR8cfGkc5B4G4oLG7IxkSyp1flx80wHr1CA6vtW0Kcv5lfhv+/E3DhxMcH4XG207jTUPPbk4hkrCA==" />
+            <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
         </item>
     </channel>
 </rss>
