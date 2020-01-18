@@ -54,7 +54,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 15. The selected app is launched.
 
 # Alternatives
-Other folks have created their own apps which reach the same end goal, find the below:
+Other folks have created their own apps which reach the same end goal:
 
 - [JamfProSwitcher](https://github.com/ninxsoft/JamfProSwitcher)
 - [JSS Switcher](https://github.com/PhantomPhixer/Phixits/tree/master/JSS%20Switcher)
