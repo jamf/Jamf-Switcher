@@ -6,7 +6,7 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.0</title>
+        <title>Version 1.1</title>
         <description><![CDATA[
             <h2>1.1 (build 58)</h2>
             <h2>Strips /?failover from a JPS URL when writing to the com.jamfsoftware.jss.plist.. but keeps when opening Safari</h2>
