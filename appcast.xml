@@ -9,11 +9,11 @@
         <title>Version 1.1</title>
         <description><![CDATA[
             <h2>1.1 (build 58)</h2>
-            <h2>Strips /?failover from a JPS URL when writing to the com.jamfsoftware.jss.plist.. but keeps when opening Safari</h2>
+            <li>Strips /?failover from a JPS URL when writing to the com.jamfsoftware.jss.plist.. but keeps when opening Safari</li>
             <h2>1.0.1 (build 48)</h2>
-            <h2>Updated bundle identifier</h2>
+            <<li>Updated bundle identifier</li>
             <h2>1.0 (build 40)</h2>
-            <h2>Release!</h2>
+            <li>Release!</li>
         ]]></description>
             <pubDate>Wednesday, 15 April 2020 20:30 +0000</pubDate>
             <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.1/Jamf.Switcher.zip"
