@@ -43,7 +43,7 @@ class ViewController: NSViewController {
     func processSelection() {
         let stringSelected = filteredDataToShow[itemsSelected]
         let stringArray = stringSelected.components(separatedBy: " - ")
-        let url = stringArray[1]
+        let url = stringArray[1].replacingOccurrences(of: "/?failover", with: "")
         let userDefaultsValue = UserDefaults(suiteName: "com.jamfsoftware.jss")
         userDefaultsValue?.set(true, forKey: "allowInvalidCertificate")
         userDefaultsValue?.set(url, forKey: "url")
