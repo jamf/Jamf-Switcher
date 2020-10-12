@@ -416,9 +416,9 @@ class ViewController: NSViewController {
         alert.addButton(withTitle: "Cancel")  // 2nd button
         alert.messageText = title
         alert.informativeText = question
-        let unameField = NSTextField(frame: NSRect(x: 0, y: 54, width: 200, height: 22))
-        let passField = NSSecureTextField(frame: NSRect(x: 0, y: 28, width: 200, height: 22))
-        let searchField = NSTextField(frame: NSRect(x: 0, y: 2, width: 200, height: 22))
+        let unameField = NSTextField(frame: NSRect(x: 0, y: 54, width: 250, height: 22))
+        let passField = NSSecureTextField(frame: NSRect(x: 0, y: 28, width: 250, height: 22))
+        let searchField = NSTextField(frame: NSRect(x: 0, y: 2, width: 250, height: 22))
         if let str = KeychainService.loadPassword(service: keyChainService, account: "passcode") {
             passField.stringValue = str
         }
