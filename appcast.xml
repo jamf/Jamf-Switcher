@@ -6,8 +6,19 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.1</title>
+        <title>Version 1.2</title>
         <description><![CDATA[
+        	<h2>1.2 (build 106)</h2>
+        	<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/4" class="issue-link">#4</a> - Adds "Find Policy" functionality via CMD + F or Window > Find Policy.<>/li>
+			<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/5" class="issue-link">#5</a> - Adds "Flush Policy" functionality via OPTION+ CMD + F or Window > Flush Policy.</li>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/6" class="issue-link">#6</a> - Adds "Export" functional via CMD + E or Window > Export.</li>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/7" class="issue-link">#7</a> - Adds full screen support.</li>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/8" class="issue-link">#8</a> - Tested on Big Sur with amendments made as needed.</li>
+            </br>
+            <li>For #4, #5, and #6 these work across any Jamf Pro listed in the main view. So if searching for a sub section then they will be enacted upon our their details will be exported, alone.</li>
+			</br>
+            <li>#4 and the #5 happen via the Jamf Pro API, as such you'll be asked for details which will be stored in your keychain for when those options are ran again.</li>
+            </br>
             <h2>1.1 (build 58)</h2>
             <li>Strips /?failover from a JPS URL when writing to the com.jamfsoftware.jss.plist.. but keeps when opening Safari</li>
             <h2>1.0.1 (build 48)</h2>
@@ -15,12 +26,12 @@
             <h2>1.0 (build 40)</h2>
             <li>Release!</li>
         ]]></description>
-            <pubDate>Wednesday, 15 April 2020 20:30 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.1/Jamf.Switcher.zip"
-            sparkle:version="58"
-            length="5838593" 
+            <pubDate>Monday, 12 October 2020 17:30 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.2/Jamf.Switcher.zip"
+            sparkle:version="106"
+            length="6008772" 
             type="application/octet-stream" 
-            sparkle:edSignature="ormjlxoIzG3GUW6RwrmsodBePeRJnlKdl38rFBZLr8bS3UObRZH59ZuEHC9KTYJbrA/G8V49u1r17a2af1NSAQ==" />
+            sparkle:edSignature="Iz1Ih2UyZV2keVZr0hKJV1EFgh4Ch82DZBMxbo0Ae+oirDfr8dbSUnQQevfUe6aenlEar0mxc6zazwJx5ogdAQ==" />
             <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
         </item>
     </channel>
