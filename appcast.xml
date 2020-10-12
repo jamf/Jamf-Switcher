@@ -9,7 +9,7 @@
         <title>Version 1.2</title>
         <description><![CDATA[
         	<h2>1.2 (build 106)</h2>
-        	<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/4" class="issue-link">#4</a> - Adds "Find Policy" functionality via CMD + F or Window > Find Policy.<>/li>
+        	<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/4" class="issue-link">#4</a> - Adds "Find Policy" functionality via CMD + F or Window > Find Policy.</li>
 			<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/5" class="issue-link">#5</a> - Adds "Flush Policy" functionality via OPTION+ CMD + F or Window > Flush Policy.</li>
             <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/6" class="issue-link">#6</a> - Adds "Export" functional via CMD + E or Window > Export.</li>
             <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/7" class="issue-link">#7</a> - Adds full screen support.</li>
