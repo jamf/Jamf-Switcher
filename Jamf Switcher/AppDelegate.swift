@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Jamf Switcher
 //
-//  Copyright © 2019 dataJAR. All rights reserved.
+//  Copyright © 2020 dataJAR. All rights reserved.
 //
 
 import Cocoa
@@ -12,6 +12,9 @@ import LetsMove
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var showJSSMenuItem: NSMenuItem!
+    @IBOutlet weak var exportJSSItem: NSMenuItem!
+    @IBOutlet weak var findPolicyJSSItem: NSMenuItem!
+    @IBOutlet weak var flushPolicyJSSItem: NSMenuItem!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         PFMoveToApplicationsFolderIfNecessary()

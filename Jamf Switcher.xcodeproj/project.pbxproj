@@ -15,6 +15,8 @@
 		7C1F8A99236B8B3D007EB235 /* LetsMove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C1F8A97236B8B21007EB235 /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C4B46CE236B803200299621 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4B46CD236B803200299621 /* Sparkle.framework */; };
 		7C4B46D0236B80DD00299621 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C4B46CD236B803200299621 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5916AD72534908E006F0C9B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5916AD62534908E006F0C9B /* Structures.swift */; };
+		B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C15A25253491C0006CFAC9 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +43,8 @@
 		7C4B46CD236B803200299621 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		7C72892C216D4512002DF3BA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jamf Switcher.entitlements"; sourceTree = "<group>"; };
+		B5916AD62534908E006F0C9B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		B5C15A25253491C0006CFAC9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +83,11 @@
 				7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */,
 				798516F11F7AB0D400EF4C1D /* AppDelegate.swift */,
 				798516F31F7AB0D400EF4C1D /* ViewController.swift */,
+				B5916AD62534908E006F0C9B /* Structures.swift */,
 				798516F51F7AB0D400EF4C1D /* Assets.xcassets */,
 				798516F71F7AB0D400EF4C1D /* Main.storyboard */,
 				7C72892C216D4512002DF3BA /* Info.plist */,
+				B5C15A25253491C0006CFAC9 /* KeychainService.swift */,
 			);
 			path = "Jamf Switcher";
 			sourceTree = "<group>";
@@ -124,7 +130,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = dataJAR;
 				TargetAttributes = {
 					798516ED1F7AB0D400EF4C1D = {
@@ -191,6 +197,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */,
+				B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */,
+				B5916AD72534908E006F0C9B /* Structures.swift in Sources */,
 				798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +242,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -293,6 +302,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -337,7 +347,7 @@
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -362,7 +372,7 @@
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
