@@ -136,7 +136,6 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSApplication.shared.windows.first?.styleMask = .titled
         appDelegate.exportJSSItem.target = self
         appDelegate.exportJSSItem.isEnabled = false
         appDelegate.findPolicyJSSItem.target = self
