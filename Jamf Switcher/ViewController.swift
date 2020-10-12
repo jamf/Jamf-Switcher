@@ -33,6 +33,7 @@ class ViewController: NSViewController {
 
     @IBAction func cancelPolicy(_ sender: Any) {
         continueProcessingPolices = false
+        searchField.isEnabled = true
     }
 
     @IBAction func showJSS(_ sender: Any) {
@@ -52,10 +53,7 @@ class ViewController: NSViewController {
     }
     
     func exportJSSList() {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd-HH-mm-ss"
-        let fileName = "Jamf Switcher Export - " + format.string(from: date)
+        let fileName = "Jamf Switcher Export - "
         var csvText = ""
         for jss in filteredDataToShow {
             let newLine = "\"\(jss.name)\"" + "," + "\"\(jss.url)\"" + "\n"
@@ -66,11 +64,15 @@ class ViewController: NSViewController {
 
     func saveToLocation(fileName: String, data: String) {
         let panel = NSSavePanel()
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+        searchField.isEnabled = true
         panel.canCreateDirectories = true
         panel.allowedFileTypes = ["csv"]
         panel.canSelectHiddenExtension = true
         panel.isExtensionHidden = false
-        panel.nameFieldStringValue = fileName
+        panel.nameFieldStringValue = fileName + " - " + format.string(from: date)
         panel.beginSheetModal(for: self.view.window!) { (result) -> Void in
             if result.rawValue == NSFileHandlingPanelOKButton
             {
@@ -78,12 +80,10 @@ class ViewController: NSViewController {
                 do {
                     try data.write(to: url, atomically: true, encoding: String.Encoding.utf8)
                     DispatchQueue.main.async(){
-                        print("Success")
                     }
                 } catch {
                     print (error.localizedDescription)
                     DispatchQueue.main.async(){
-                        print("Failed")
                     }
                 }
             }
@@ -235,7 +235,8 @@ class ViewController: NSViewController {
     @IBAction func flushPolicySearch(_ sender: Any) {
         flushPolicies = true
         continueProcessingPolices = true
-        progressViewLabel.stringValue = "Policy Search: Flush"
+        searchField.isEnabled = false
+        progressViewLabel.stringValue = "Flushing policies"
         processPolices()
     }
 
@@ -251,7 +252,6 @@ class ViewController: NSViewController {
         request.setValue("Basic \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Accept")
-        
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Authorization" : "Basic \(apiKey)", "Content-Type" : "application/xml", "Accept" : "application/xml"]
         
@@ -264,14 +264,12 @@ class ViewController: NSViewController {
             guard error == nil && ( responseFromJSS.statusCode == 200 || responseFromJSS.statusCode == 201 ) else {
                 DispatchQueue.main.async(){
                         DispatchQueue.main.async(){
-                            print("Policy Flushed Failed")
                         }
                 }
                 return
             }
             DispatchQueue.main.async(){
                     DispatchQueue.main.async(){
-                        print("Policy Flushed Completed")
                     }
             }
         }
@@ -282,14 +280,15 @@ class ViewController: NSViewController {
     @IBAction func getPolicySearch(_ sender: Any) {
         continueProcessingPolices = true
         flushPolicies = false
-        progressViewLabel.stringValue = "Policy Search:"
+        searchField.isEnabled = false
+        progressViewLabel.stringValue = "Searching policies"
         processPolices()
     }
 
     func processPolices() {
         var answer: (String, String, String)
         if flushPolicies {
-            answer = showFindAlert(title: "Jamf Switcher wants to use your credentials.", question: "Please enter your name, password and the policy search term.\rTHIS WILL FLUSH ANY FOUND POLICES. PLEASE MAKE SURE THE SEARCH TERM IS ACCURATE. IF IN DOUBT TRY A NORMAL SEARCH FIRST.")
+            answer = showFindAlert(title: "Jamf Switcher wants to use your credentials.", question: "Please enter your name, password and the policy search term.\r\rNOTE: This will flush any found polices. Please make sure the search term is accurate. if in doubt try a normal search first.")
         } else {
             answer = showFindAlert(title: "Jamf Switcher wants to use your credentials.", question: "Please enter your name, password and the policy search term.")
         }
@@ -357,7 +356,8 @@ class ViewController: NSViewController {
                     let csvText = self.policyReport.joined(separator: "\n")
                     DispatchQueue.main.async {
                         self.progressView.isHidden = true
-                        self.saveToLocation(fileName: "Policy Search - \(self.policyToFind)", data: csvText)
+                        let fileName = "Policy Search - " + self.policyToFind
+                        self.saveToLocation(fileName: fileName, data: csvText)
                     }
                 }
                 return
@@ -387,14 +387,15 @@ class ViewController: NSViewController {
                             self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + ","  + "Not Found")
                     }
                     if self.processedJSSCount == self.jssCount {
-                        //print(self.policyReport.sorted())
                         let csvText = self.policyReport.joined(separator: "\n")
                         DispatchQueue.main.async {
                             self.progressView.isHidden = true
                             if self.flushPolicies {
-                                self.saveToLocation(fileName: "Policy Flush - \(self.policyToFind)", data: csvText)
+                                let fileName = "Policy Flush - " + self.policyToFind
+                                self.saveToLocation(fileName: fileName, data: csvText)
                             } else {
-                                self.saveToLocation(fileName: "Policy Search - \(self.policyToFind)", data: csvText)
+                                let fileName = "Policy Search - " + self.policyToFind
+                                self.saveToLocation(fileName: fileName, data: csvText)
                             }
                         }
                     }
