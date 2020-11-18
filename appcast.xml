@@ -6,8 +6,11 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.2</title>
+        <title>Version 1.2.1</title>
         <description><![CDATA[
+            <h2>1.2.1 (build 110)</h2>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/3" class="issue-link">#4</a> - Silicon support, from updating LetsMove.framework to 1.25 and Sparkle.framework to 1.24.0.</li>
+            </br>
         	<h2>1.2 (build 106)</h2>
         	<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/4" class="issue-link">#4</a> - Adds "Find Policy" functionality via CMD + F or Window > Find Policy.</li>
 			<li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/5" class="issue-link">#5</a> - Adds "Flush Policy" functionality via OPTION+ CMD + F or Window > Flush Policy.</li>
@@ -26,12 +29,12 @@
             <h2>1.0 (build 40)</h2>
             <li>Release!</li>
         ]]></description>
-            <pubDate>Monday, 12 October 2020 17:30 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.2/Jamf.Switcher.zip"
-            sparkle:version="106"
-            length="6008772" 
+            <pubDate>Wednesday, 18 November 2020 11:00 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.2.1/Jamf.Switcher.zip"
+            sparkle:version="110"
+            length="6494768" 
             type="application/octet-stream" 
-            sparkle:edSignature="Iz1Ih2UyZV2keVZr0hKJV1EFgh4Ch82DZBMxbo0Ae+oirDfr8dbSUnQQevfUe6aenlEar0mxc6zazwJx5ogdAQ==" />
+            sparkle:edSignature="iU5o2aI6xzS11dc5fBv+xwLRM6HsNBkdyLMhmpGv7pvLVPh6NoRSfxedeuqrh8+PiIYwUYUPn5fFi+sGXAoZBA==" />
             <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
         </item>
     </channel>
