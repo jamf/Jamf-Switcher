@@ -11,6 +11,7 @@
 		798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798516F31F7AB0D400EF4C1D /* ViewController.swift */; };
 		798516F61F7AB0D400EF4C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798516F51F7AB0D400EF4C1D /* Assets.xcassets */; };
 		798516F91F7AB0D400EF4C1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798516F71F7AB0D400EF4C1D /* Main.storyboard */; };
+		79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E142882680E19100C71278 /* JamfSelfServiceParser.swift */; };
 		B51E892D25652D0400F6B621 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; };
 		B51E892E25652D0400F6B621 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B51E893125652D1700F6B621 /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892F25652D1500F6B621 /* LetsMove.framework */; };
@@ -39,6 +40,7 @@
 		798516F31F7AB0D400EF4C1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		798516F51F7AB0D400EF4C1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		798516F81F7AB0D400EF4C1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79E142882680E19100C71278 /* JamfSelfServiceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfSelfServiceParser.swift; sourceTree = "<group>"; };
 		7C72892C216D4512002DF3BA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jamf Switcher.entitlements"; sourceTree = "<group>"; };
 		B51E892B25652CE000F6B621 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				798516F71F7AB0D400EF4C1D /* Main.storyboard */,
 				7C72892C216D4512002DF3BA /* Info.plist */,
 				B5C15A25253491C0006CFAC9 /* KeychainService.swift */,
+				79E142882680E19100C71278 /* JamfSelfServiceParser.swift */,
 			);
 			path = "Jamf Switcher";
 			sourceTree = "<group>";
@@ -112,7 +115,7 @@
 				798516EB1F7AB0D400EF4C1D /* Frameworks */,
 				7C4B46CF236B80C700299621 /* CopyFiles */,
 				798516EC1F7AB0D400EF4C1D /* Resources */,
-				79C5D620202B6DF50071D851 /* ShellScript */,
+				7920E2DB2681E0F100BAE648 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -176,12 +179,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		79C5D620202B6DF50071D851 /* ShellScript */ = {
+		7920E2DB2681E0F100BAE648 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+			);
+			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -199,6 +206,7 @@
 				798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */,
 				B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */,
 				B5916AD72534908E006F0C9B /* Structures.swift in Sources */,
+				79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */,
 				798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +345,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -347,7 +355,7 @@
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -362,7 +370,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -372,7 +380,7 @@
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
