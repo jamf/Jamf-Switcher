@@ -16,9 +16,7 @@ class ViewController: NSViewController {
     let keyChainService = "uk.co.dataJAR.JamfSwitcher"
     
     //Location of Service Service files for Jamf Pro 10.30 and above
-    let jamfSelfServiceDirectoryURL = URL(fileURLWithPath: NSString(string: "~/Library/Application Support/com.jamfsoftware.selfservice.mac/").expandingTildeInPath)
-    let jamfSelfServiceFileName = "CocoaAppCD.storedata"
-    var userSelectedFolderURL: URL?
+    let jamfSelfServiceCocoaAppCDURL = URL(fileURLWithPath: NSString(string: "~/Library/Application Support/com.jamfsoftware.selfservice.mac/CocoaAppCD.storedata").expandingTildeInPath)
 
 
     var apiKey = ""
@@ -50,12 +48,12 @@ class ViewController: NSViewController {
     
     @IBAction func refresh(_ sender: Any) {
         searchField.stringValue = ""
-        if isManagedPlugins() {
-            //Jamf Pro 10.29 and below being used
-            loadData()
-        } else {
+        if isCocoaAppCD() {
             //Jamf Pro 10.30 and above being used
             loadDataV2()
+        } else {
+            //Jamf Pro 10.29 and below being used
+            loadData()
         }
 
     }
@@ -69,7 +67,6 @@ class ViewController: NSViewController {
     }
     
     func exportJSSList() {
-        print("exportJSSList")
         let fileName = "Jamf Switcher Export"
         var csvText = ""
         for jss in filteredDataToShow {
@@ -80,7 +77,6 @@ class ViewController: NSViewController {
     }
 
     func saveToLocation(fileName: String, data: String) {
-        print("saveToLocation")
         let panel = NSSavePanel()
         let date = Date()
         let format = DateFormatter()
@@ -96,7 +92,6 @@ class ViewController: NSViewController {
         panel.beginSheetModal(for: self.view.window!) { (result) -> Void in
             if result.rawValue == NSFileHandlingPanelOKButton
             {
-                print("OK BUtton")
                 guard let url = panel.url else { return }
                 do {
                     try data.write(to: url, atomically: true, encoding: String.Encoding.utf8)
@@ -200,194 +195,58 @@ class ViewController: NSViewController {
     
     
     // MARK: Jamf Pro 10.30 and above
-    func saveBookmarkForSelectedURL() -> Bool {
-        do {
-            if let selectedURL = self.userSelectedFolderURL {
-
-                let bookmarkData = try selectedURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
-
-                let userDefaults = UserDefaults.standard
-
-                userDefaults.set(bookmarkData, forKey: "JamfSelfServiceURL")
-
-                return true
-
-            } else {
-                //No URL available
-                return false
-            }
-
-        } catch let error {
-            //Failed to create a bookmark
-            print("Error saving bookmark:", error)
-            return false
-        }
-
-    }
     
-    func getPersistentFileURL() -> URL? {
-        let userDefaults = UserDefaults.standard
-        if let bookmarkData = userDefaults.data(forKey: "JamfSelfServiceURL") {
-     
-            do {
-                var bookmarkDataIsStale = false
-                let urlForBookmark = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
-     
-                if bookmarkDataIsStale {
-                    //Outdated bookboard. Neees refreshing
-                    _ = saveBookmarkForSelectedURL()
-                    return nil
-     
-                } else {
-                    return urlForBookmark
-                }
-     
-            } catch {
-                //Error feteching the bookmark
-                print("Error resolving bookmark:", error)
-                return nil
+    
+    func parseData(fileURL: URL) {
+        //Jamf 10.30+
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            if let data = try? Data(contentsOf: fileURL) {
+                let myParser = JamfSelfServiceParser(xmlData: data)
+                myParser.startParsing()
+                dataToShow = myParser.jssInstances
+                dataToShow = dataToShow.sorted { $0.name.lowercased()  < $1.name.lowercased() }
+                filteredDataToShow = dataToShow
+                myTableView.reloadData()
             }
-     
         } else {
-     
-            return nil
-     
-        }
-     
-    }
-    
-    func parseData(selectedDirectoryURL: URL) {
-        if FileManager.default.fileExists(atPath: selectedDirectoryURL.path) {
-            print("Directory Exisits")
-            //Jamf 10.30+
-            
-            let persistentURL = selectedDirectoryURL.appendingPathComponent(jamfSelfServiceFileName, isDirectory: false)
-            if FileManager.default.fileExists(atPath: persistentURL.path) {
-                if let data = try? Data(contentsOf: persistentURL) {
-
-                    let myParser = JamfSelfServiceParser(xmlData: data)
-                    myParser.startParsing()
-                    print(myParser.jssInstances)
-                    dataToShow = myParser.jssInstances
-                    dataToShow = dataToShow.sorted { $0.name.lowercased()  < $1.name.lowercased() }
-                    filteredDataToShow = dataToShow
-                    myTableView.reloadData()
-                }
-            }
-
-        } else {
-            print("File does not Exisits")
-
+            //File Does not exist
         }
     }
     
-    func promptUserForJamfSelfServiceDirectory() {
-        let folderSelectionDialog = NSOpenPanel()
-        folderSelectionDialog.directoryURL = jamfSelfServiceDirectoryURL
-        folderSelectionDialog.message = "Jamf Switcher needs access to this directory.\r\(jamfSelfServiceDirectoryURL.path)\rPlease click the Select button to grant access."
-        folderSelectionDialog.prompt = "Select"
-
-        folderSelectionDialog.allowedFileTypes = [""]
-        folderSelectionDialog.allowsOtherFileTypes = false
-        folderSelectionDialog.canChooseDirectories = true
-        folderSelectionDialog.canCreateDirectories = false
-        folderSelectionDialog.canChooseFiles = false
-        folderSelectionDialog.allowsMultipleSelection = false
-        
-        let dialogButtonPressed = folderSelectionDialog.runModal()
-        
-        if dialogButtonPressed == NSApplication.ModalResponse.OK {
-            //Select Button pressed
-            
-            if folderSelectionDialog.urls.count == 1 {
-                if let selectedDirectoryURL = folderSelectionDialog.urls.first {
-                    if selectedDirectoryURL.absoluteString.contains("com.jamfsoftware.selfservice.mac") {
-                        self.userSelectedFolderURL = selectedDirectoryURL
-                        _ = saveBookmarkForSelectedURL()
-                        parseData(selectedDirectoryURL: selectedDirectoryURL)
-                        if dataToShow.count > 0 {
-                            appDelegate.exportJSSItem.isEnabled = true
-                            appDelegate.findPolicyJSSItem.isEnabled = true
-                            appDelegate.flushPolicyJSSItem.isEnabled = true
-                        } else {
-                            appDelegate.exportJSSItem.isEnabled = false
-                            appDelegate.findPolicyJSSItem.isEnabled = false
-                            appDelegate.flushPolicyJSSItem.isEnabled = false
-                        }
-
-                    } else {
-                        print("User did not select a folder: file:///")
-                    }
-                }
-            }
-
-            
-        } else if dialogButtonPressed == NSApplication.ModalResponse.cancel { // user clicked on "Cancel"
-            //Cancel Button pressed
-
-            print("User cancelled folder selection panel")
-
-        }
-
-    }
 
     
     func loadDataV2() {
         //For Jamf Pro 10.30 and above
-        if let persistentURL = getPersistentFileURL() {
-            //We have a saved persistant url
-            
-            _ = persistentURL.startAccessingSecurityScopedResource()
-            parseData(selectedDirectoryURL: persistentURL)
-            persistentURL.stopAccessingSecurityScopedResource()
-            appDelegate.showJSSMenuItem.isEnabled = false
-            if dataToShow.count > 0 {
-                appDelegate.exportJSSItem.isEnabled = true
-                appDelegate.findPolicyJSSItem.isEnabled = true
-                appDelegate.flushPolicyJSSItem.isEnabled = true
-            } else {
-                appDelegate.exportJSSItem.isEnabled = false
-                appDelegate.findPolicyJSSItem.isEnabled = false
-                appDelegate.flushPolicyJSSItem.isEnabled = false
-            }
-
-            
+        parseData(fileURL: jamfSelfServiceCocoaAppCDURL)
+        appDelegate.showJSSMenuItem.isEnabled = false
+        if dataToShow.count > 0 {
+            appDelegate.exportJSSItem.isEnabled = true
+            appDelegate.findPolicyJSSItem.isEnabled = true
+            appDelegate.flushPolicyJSSItem.isEnabled = true
         } else {
-            //No save persistant url, prompt the user
-            print("No save persistant url, prompt the user")
-            promptUserForJamfSelfServiceDirectory()
+            appDelegate.exportJSSItem.isEnabled = false
+            appDelegate.findPolicyJSSItem.isEnabled = false
+            appDelegate.flushPolicyJSSItem.isEnabled = false
         }
-
     }
     
-    func isManagedPlugins() -> Bool {
-        let fileManager = FileManager.default
-
-        do {
-            let itemsArray = try fileManager.contentsOfDirectory(atPath: managedPluginsPath)
-            
-            let plists = itemsArray.filter { $0.hasSuffix(".plist") }
-            if plists.count > 0 {
-                //Still using managedPluginsPath
-                return true
-            } else {
-                //No plists in managedPluginsPath
-                return false
-            }
-        } catch {
-            //No managedPluginsPath
+    
+    func isCocoaAppCD() -> Bool {
+        if FileManager.default.fileExists(atPath: jamfSelfServiceCocoaAppCDURL.path) {
+            return true
+        } else {
             return false
         }
-
     }
     
+        
     override func viewDidAppear() {
-        if isManagedPlugins() {
-            //Jamf Pro 10.29 and below being used
-            loadData()
-        } else {
+        if isCocoaAppCD() {
             //Jamf Pro 10.30 and above being used
             loadDataV2()
+        } else {
+            //Jamf Pro 10.29 and below being used
+            loadData()
         }
     }
 
