@@ -6,8 +6,11 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.2.1</title>
+        <title>Version 1.3</title>
         <description><![CDATA[
+            <h2>1.3 (build 118)</h2>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/9" class="issue-link">#9</a> - Adds support for Jamf Pro 10.30+'s new Self Service bookmark format.</li>
+            </br>
             <h2>1.2.1 (build 109)</h2>
             <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/3" class="issue-link">#3</a> - Silicon support, from updating LetsMove.framework to 1.25 and Sparkle.framework to 1.24.0.</li>
             </br>
@@ -30,11 +33,11 @@
             <li>Release!</li>
         ]]></description>
             <pubDate>Wednesday, 18 November 2020 11:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.2.1/Jamf.Switcher.zip"
-            sparkle:version="109"
-            length="6494768" 
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.3/Jamf.Switcher.zip"
+            sparkle:version="118"
+            length="6506308" 
             type="application/octet-stream" 
-            sparkle:edSignature="iU5o2aI6xzS11dc5fBv+xwLRM6HsNBkdyLMhmpGv7pvLVPh6NoRSfxedeuqrh8+PiIYwUYUPn5fFi+sGXAoZBA==" />
+            sparkle:edSignature="jb3GVS+ZUd+P45SH/zvT7HjCuSqkqU8Wrh3iMRZOA2VQI6PNcXGJLFI9jlxjtUTnxYjBBz6TNz6vkpOLMC1MDA==" />
             <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
         </item>
     </channel>
