@@ -38,10 +38,10 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
         myParser.delegate = self
         myParser.parse()
     }
-    
+
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         foundCharacters = ""
-        if elementName.lowercased() == "object" {
+       if elementName.lowercased() == "object" {
             foundBookMark = false
             foundURL = false
             foundName = false
@@ -67,6 +67,8 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
         
         if elementName.lowercased() == "attribute" &&  attributeDict["name"] == "jssdescription" {
             foundDescription = true
+        } else if elementName.lowercased() == "attribute" &&  attributeDict["name"] == "serverdescription" {
+            foundDescription = true
         }
         
     }
@@ -81,7 +83,7 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
             if foundName && name == "" {
                 name = foundCharacters
                 name = name.replacingOccurrences(of: " - ", with: " ")
-                name = name.replacingOccurrences(of: "\\u2600", with: "&") 
+                name = name.replacingOccurrences(of: "\\u2600", with: "&")
             }
             
             if foundDescription && jssdescription == "" {
