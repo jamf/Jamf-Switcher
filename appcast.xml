@@ -6,8 +6,11 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.3</title>
+        <title>Version 1.3.1</title>
         <description><![CDATA[
+            <h2>1.3.1 (build 133)</h2>
+            <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/11" class="issue-link">#9</a> - Added support for Jamf Pro 10.33+'s changes to the Self Service Bookmark XML.</li>
+            </br>
             <h2>1.3 (build 118)</h2>
             <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/9" class="issue-link">#9</a> - Adds support for Jamf Pro 10.30+'s new Self Service bookmark format.</li>
             </br>
@@ -32,12 +35,12 @@
             <h2>1.0 (build 40)</h2>
             <li>Release!</li>
         ]]></description>
-            <pubDate>Wednesday, 18 November 2020 11:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.3/Jamf.Switcher.zip"
-            sparkle:version="118"
-            length="6506308" 
+            <pubDate>Saturday, 23 October 2021 13:00 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.3.1/Jamf.Switcher.zip"
+            sparkle:version="133"
+            length="6689838" 
             type="application/octet-stream" 
-            sparkle:edSignature="jb3GVS+ZUd+P45SH/zvT7HjCuSqkqU8Wrh3iMRZOA2VQI6PNcXGJLFI9jlxjtUTnxYjBBz6TNz6vkpOLMC1MDA==" />
+            sparkle:edSignature="2GT91jVEWzrKZHjffOLhytOEQlOpTS7Ma/v/Vv7XOTo6RRQV/yz54iI76WzL6rjj64sL6sckZDK5SmDVAXdhCA==" />
             <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
         </item>
     </channel>
