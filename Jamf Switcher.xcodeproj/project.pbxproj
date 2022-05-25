@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C48283B9C400095A734 /* CallAPI.swift */; };
+		63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4A283B9CF70095A734 /* Constants.swift */; };
+		63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4C283B9EE80095A734 /* JamfAPI.swift */; };
+		63EF6C50283B9F2E0095A734 /* JamfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4F283B9F2E0095A734 /* JamfService.swift */; };
+		63EF6C57283BA3040095A734 /* JamfLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C56283BA3040095A734 /* JamfLogic.swift */; };
+		63EF6C5B283BBA340095A734 /* PolicyLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C5A283BBA340095A734 /* PolicyLogic.swift */; };
 		798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798516F11F7AB0D400EF4C1D /* AppDelegate.swift */; };
 		798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798516F31F7AB0D400EF4C1D /* ViewController.swift */; };
 		798516F61F7AB0D400EF4C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798516F51F7AB0D400EF4C1D /* Assets.xcassets */; };
@@ -35,6 +41,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63EF6C48283B9C400095A734 /* CallAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPI.swift; sourceTree = "<group>"; };
+		63EF6C4A283B9CF70095A734 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		63EF6C4C283B9EE80095A734 /* JamfAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfAPI.swift; sourceTree = "<group>"; };
+		63EF6C4F283B9F2E0095A734 /* JamfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfService.swift; sourceTree = "<group>"; };
+		63EF6C56283BA3040095A734 /* JamfLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfLogic.swift; sourceTree = "<group>"; };
+		63EF6C5A283BBA340095A734 /* PolicyLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyLogic.swift; sourceTree = "<group>"; };
 		798516EE1F7AB0D400EF4C1D /* Jamf Switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jamf Switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		798516F11F7AB0D400EF4C1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		798516F31F7AB0D400EF4C1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +74,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63EF6C46283B9C0A0095A734 /* JamfAPI */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C55283BA2F40095A734 /* Logic */,
+				63EF6C51283BA0D90095A734 /* Models */,
+				63EF6C4E283B9F220095A734 /* Service */,
+				63EF6C47283B9C310095A734 /* API */,
+				63EF6C4A283B9CF70095A734 /* Constants.swift */,
+			);
+			path = JamfAPI;
+			sourceTree = "<group>";
+		};
+		63EF6C47283B9C310095A734 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C48283B9C400095A734 /* CallAPI.swift */,
+				63EF6C4C283B9EE80095A734 /* JamfAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		63EF6C4E283B9F220095A734 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C4F283B9F2E0095A734 /* JamfService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		63EF6C51283BA0D90095A734 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5916AD62534908E006F0C9B /* Structures.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63EF6C55283BA2F40095A734 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C56283BA3040095A734 /* JamfLogic.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		63EF6C59283BBA220095A734 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C5A283BBA340095A734 /* PolicyLogic.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 		798516E51F7AB0D400EF4C1D = {
 			isa = PBXGroup;
 			children = (
@@ -82,10 +147,11 @@
 		798516F01F7AB0D400EF4C1D /* Jamf Switcher */ = {
 			isa = PBXGroup;
 			children = (
+				63EF6C59283BBA220095A734 /* Logic */,
+				63EF6C46283B9C0A0095A734 /* JamfAPI */,
 				7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */,
 				798516F11F7AB0D400EF4C1D /* AppDelegate.swift */,
 				798516F31F7AB0D400EF4C1D /* ViewController.swift */,
-				B5916AD62534908E006F0C9B /* Structures.swift */,
 				798516F51F7AB0D400EF4C1D /* Assets.xcassets */,
 				798516F71F7AB0D400EF4C1D /* Main.storyboard */,
 				7C72892C216D4512002DF3BA /* Info.plist */,
@@ -203,10 +269,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */,
+				63EF6C5B283BBA340095A734 /* PolicyLogic.swift in Sources */,
 				798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */,
+				63EF6C50283B9F2E0095A734 /* JamfService.swift in Sources */,
 				B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */,
+				63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */,
 				B5916AD72534908E006F0C9B /* Structures.swift in Sources */,
+				63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */,
 				79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */,
+				63EF6C57283BA3040095A734 /* JamfLogic.swift in Sources */,
 				798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

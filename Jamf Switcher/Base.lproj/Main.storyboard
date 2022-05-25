@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -216,23 +216,23 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Jamf_Switcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="566" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="595" height="556"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XQ-N4-yL2">
-                                <rect key="frame" x="0.0" y="22" width="566" height="512"/>
+                                <rect key="frame" x="0.0" y="22" width="595" height="512"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="si7-3k-yT9">
-                                    <rect key="frame" x="1" y="1" width="564" height="510"/>
+                                    <rect key="frame" x="1" y="1" width="593" height="510"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="5Wj-i5-LgG">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="510"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="593" height="510"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="552" minWidth="40" maxWidth="1000" id="zBA-Af-LZe">
+                                                <tableColumn editable="NO" width="523" minWidth="40" maxWidth="1000" id="zBA-Af-LZe">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Double click or hit enter to launch Casper Admin.">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -245,11 +245,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="myCell" id="Trd-SE-6Jn">
-                                                            <rect key="frame" x="1" y="1" width="561" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="532" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="443-PB-hsr">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="561" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="532" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="ZPR-hK-Uaq"/>
                                                                     </constraints>
@@ -285,7 +285,7 @@
                                 </scroller>
                             </scrollView>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKJ-6e-LVR">
-                                <rect key="frame" x="0.0" y="534" width="566" height="22"/>
+                                <rect key="frame" x="0.0" y="534" width="595" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="I3E-jr-6uF"/>
                                 </constraints>
@@ -296,9 +296,9 @@
                                 </searchFieldCell>
                             </searchField>
                             <box hidden="YES" boxType="custom" borderType="bezel" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="p4k-xs-2I9">
-                                <rect key="frame" x="0.0" y="454" width="566" height="80"/>
+                                <rect key="frame" x="0.0" y="454" width="595" height="80"/>
                                 <view key="contentView" id="59o-dK-OrG">
-                                    <rect key="frame" x="1" y="1" width="564" height="78"/>
+                                    <rect key="frame" x="1" y="1" width="593" height="78"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="50" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ZEo-sw-gC9">
@@ -316,7 +316,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VaS-Pc-d0H">
-                                            <rect key="frame" x="475" y="9" width="76" height="32"/>
+                                            <rect key="frame" x="504" y="9" width="76" height="32"/>
                                             <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M1g-9A-crn">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
