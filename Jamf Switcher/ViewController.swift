@@ -449,6 +449,7 @@ class ViewController: NSViewController {
         if checkedJSSURL.suffix(1) == "/" {
             checkedJSSURL = String(jssURL.dropLast())
         }
+
         
         JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, token: self.token){ result in
             self.processedJSSCount = self.processedJSSCount + 1
@@ -467,8 +468,10 @@ class ViewController: NSViewController {
                         }
                     case .failure(let error):
                         self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                        let csvText = self.policyReport.joined(separator: "\n")
-                        self.savePolicies(csvText: csvText)
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
                     }
                     
                 }
@@ -506,8 +509,10 @@ class ViewController: NSViewController {
                                         }
                                     case .failure(let error):
                                         self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                                        let csvText = self.policyReport.joined(separator: "\n")
-                                        self.savePolicies(csvText: csvText)
+                                        if self.processedJSSCount == self.jssCount {
+                                            let csvText = self.policyReport.joined(separator: "\n")
+                                            self.savePolicies(csvText: csvText)
+                                        }
                                     }
                                     
                                 }
@@ -526,8 +531,10 @@ class ViewController: NSViewController {
                         }
                     case .failure(let error):
                         self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                        let csvText = self.policyReport.joined(separator: "\n")
-                        self.savePolicies(csvText: csvText)
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
                     }
                 }
 
