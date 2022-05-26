@@ -11,67 +11,6 @@ import Cocoa
 
 public class PolicyLogic {
     
-    public func processMyPolicies(apiKey: String, myPolicies: Policies, policyToFind: String, flushPolicies: Bool, jssURL: String, policyName: String, token: String, processedJSSCount: Int, jssCount: Int) -> (fileName: String, csvText: String) {
-        let policyReport = processMyPoliciesReport(apiKey: apiKey, myPolicies: myPolicies, policyToFind: policyToFind, flushPolicies: flushPolicies, jssURL: jssURL, policyName: policyName, token: token)
-        
-        if processedJSSCount == jssCount {
-            let csvText = policyReport.joined(separator: "\n")
-            if flushPolicies {
-                let fileName = "Policy Flush - " + policyToFind
-                return (fileName, csvText)
-            } else {
-                let fileName = "Policy Search - " + policyToFind
-                return (fileName, csvText)
-            }
-        }
-        return ("","")
-    }
-    
-    public func processMyPoliciesReport(apiKey: String, myPolicies: Policies, policyToFind: String, flushPolicies: Bool, jssURL: String, policyName: String, token: String) -> [String] {
-        var policyReport = [String]()
-        
-        let foundPolices = retrieveFoundPolicy(myPolices: myPolicies, policyToFind: policyToFind)
-        let foundPolicesFormated = retrieveFoundPolicyFormatted(foundPolices: foundPolices)
-        
-        if foundPolices.count > 0 {
-            if flushPolicies {
-                for policy in foundPolices {
-                    JamfLogic().findPolicyById(policyId: policy.id, jamfServerURL: jssURL, apiKey: apiKey, token: token) { result in
-                        switch result {
-                            
-                        case .success(let foundPolicy):
-                            if foundPolicy.policy.general.enabled {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
-                                    //MARK: FlushMatchPolices by making API Call
-                                    JamfLogic().flushMatchingPolicies(jamfServerURL: jssURL, apiKey: apiKey, id: policy.id, token: token) { result in
-                                        switch result {
-                                            
-                                        case .success(let result):
-                                            print(result)
-                                        case .failure(let error):
-                                            print(error)
-                                        }
-                                    }
-                                })
-                            }
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-                    
-                }
-            }
-            if flushPolicies {
-                policyReport.append("\"\(policyName)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed")
-            } else {
-                policyReport.append("\"\(policyName)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found")
-            }
-        } else {
-                policyReport.append("\"\(policyName)\"" + "," + jssURL + "," + "" + ","  + "Not Found")
-        }
-        return policyReport
-    }
-    
     public func retrieveFoundPolicy(myPolices: Policies, policyToFind: String) -> [Policy] {
         let foundPolices = myPolices.policies.filter{$0.name.lowercased().contains(policyToFind.lowercased())}
         print(foundPolices)
@@ -86,4 +25,46 @@ public class PolicyLogic {
         return foundPolicesFormated
     }
     
+    public func processPolicy(myPolicies: Policies, policyToFind: String, checkedJSSURL: String, apiKey: String, token: String, flushPolicies: Bool, instanceName: String, completion: @escaping(Result<[String], JamfError>) -> Void) {
+        let foundPolices = retrieveFoundPolicy(myPolices: myPolicies, policyToFind: policyToFind)
+        let foundPolicesFormated = retrieveFoundPolicyFormatted(foundPolices: foundPolices)
+        var policyReport = [String]()
+        let dispatchGroup = DispatchGroup()
+        
+        if foundPolices.count > 0 {
+            for policy in foundPolices {
+                dispatchGroup.enter()
+                JamfLogic().findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, token: token) { result in
+                    switch result {
+                        
+                    case .success(let foundPolicy):
+                        if (flushPolicies && foundPolicy.policy.general.enabled){
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
+                                JamfLogic().flushMatchingPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, id: policy.id, token: token) { result in
+                                    switch result {
+                                        
+                                    case .success(_):
+                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                                    case .failure(_):
+                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flush Failed" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                                    }
+                                }
+                            })
+                            
+                        } else {
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                        }
+                        dispatchGroup.leave()
+                    case .failure(let error):
+                        print(error)
+                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Not Found")
+                        dispatchGroup.leave()
+                    }
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(.success(policyReport))
+        }
+    }
 }

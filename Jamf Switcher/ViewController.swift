@@ -430,12 +430,14 @@ class ViewController: NSViewController {
         }
     }
     
-    func savePolicies(fileName: String, csvText: String){
+    func savePolicies(csvText: String){
         DispatchQueue.main.async {
             self.progressView.isHidden = true
             if self.flushPolicies {
+                let fileName = "Policy Flush - " + self.policyToFind
                 self.saveToLocation(fileName: fileName, data: csvText)
             } else {
+                let fileName = "Policy Search - " + self.policyToFind
                 self.saveToLocation(fileName: fileName, data: csvText)
             }
         }
@@ -452,61 +454,83 @@ class ViewController: NSViewController {
             self.processedJSSCount = self.processedJSSCount + 1
             switch result {
             case .success(let myPolicies):
-                let result = PolicyLogic().processMyPolicies(apiKey: apiKey, myPolicies: myPolicies, policyToFind: self.policyToFind, flushPolicies: self.flushPolicies, jssURL: jssURL, policyName: self.filteredDataToShow[row].name, token: self.token, processedJSSCount: self.processedJSSCount, jssCount: self.jssCount)
-                
-                guard (result.fileName.isEmpty && result.csvText.isEmpty) || (result.fileName.isEmpty || result.csvText.isEmpty) else {
-                    self.savePolicies(fileName: result.fileName, csvText: result.csvText)
-                    return
-                }
-                self.progressView.isHidden = true
-                return
-            case .failure(let error):
-                guard error.statusCode == 401 else {
-                    if !self.flushPolicies {
-                        let statusCode = error.statusCode
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(statusCode)\"")
-                    }
-                    self.processJSS()
-                    return
-                }
-                
-                //MARK: Get Auth Token
-                JamfLogic().createAuthToken(jamfServerURL: checkedJSSURL, apiKey: apiKey){ result in
+                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, token: self.token, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
                     
                     switch result {
                         
-                    case .success(let result):
-                        self.token = result.token
+                    case .success(let report):
+                        self.policyReport.append(contentsOf: report)
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            
+                            self.savePolicies(csvText: csvText)
+                        }
+                    case .failure(let error):
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                        let csvText = self.policyReport.joined(separator: "\n")
+                        self.savePolicies(csvText: csvText)
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                guard error.statusCode == 401 else {
+                    if !self.flushPolicies {
+                       self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                    }
+                    if self.processedJSSCount == self.jssCount {
+                       let csvText = self.policyReport.joined(separator: "\n")
+                        self.savePolicies(csvText: csvText)
+                    }
+                    return
+                }
+                
+                //MARK: Create Token
+                JamfLogic().createAuthToken(jamfServerURL: checkedJSSURL, apiKey: apiKey) { result in
+                    switch result {
+                        
+                    case .success(let auth):
+                        self.token = auth.token
                         JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, token: self.token){ result in
                             switch result {
                             case .success(let myPolicies):
-                                let result = PolicyLogic().processMyPolicies(apiKey: apiKey, myPolicies: myPolicies, policyToFind: self.policyToFind, flushPolicies: self.flushPolicies, jssURL: jssURL, policyName: self.filteredDataToShow[row].name, token: self.token, processedJSSCount: self.processedJSSCount, jssCount: self.jssCount)
-                                
-                                guard (result.fileName.isEmpty && result.csvText.isEmpty) || (result.fileName.isEmpty || result.csvText.isEmpty) else {
-                                    self.savePolicies(fileName: result.fileName, csvText: result.csvText)
-                                    return
-                                }
-                                self.progressView.isHidden = true
-                                return
-                            case .failure(let error):
-                                guard error.statusCode == 401 else {
-                                    if !self.flushPolicies {
-                                        let statusCode = error.statusCode
-                                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(statusCode)\"")
+                                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, token: self.token, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
+                                    
+                                    switch result {
+                                        
+                                    case .success(let report):
+                                        self.policyReport.append(contentsOf: report)
+                                        if self.processedJSSCount == self.jssCount {
+                                            let csvText = self.policyReport.joined(separator: "\n")
+                                            self.savePolicies(csvText: csvText)
+                                        }
+                                    case .failure(let error):
+                                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                                        let csvText = self.policyReport.joined(separator: "\n")
+                                        self.savePolicies(csvText: csvText)
                                     }
-                                    self.processJSS()
-                                    return
+                                    
                                 }
+                                
+                            case .failure(let error):
+                               
+                                if !self.flushPolicies {
+                                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                                }
+                                if self.processedJSSCount == self.jssCount {
+                                   let csvText = self.policyReport.joined(separator: "\n")
+                                    self.savePolicies(csvText: csvText)
+                                }
+
                             }
                         }
                     case .failure(let error):
-                        print(error)
-                        self.progressView.isHidden = true
-                        return
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                        let csvText = self.policyReport.joined(separator: "\n")
+                        self.savePolicies(csvText: csvText)
                     }
                 }
-                self.progressView.isHidden = true
-                return
+
             }
         }
     }

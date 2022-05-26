@@ -40,7 +40,7 @@ public class JamfAPI: JamfService {
     
     public func findPolicyById(policyId: Int, jamfServerURL: String, apiKey: String, token: String, completion: @escaping(Result<PolicyResponse, JamfError>) -> Void) {
         
-        guard let url = URL(string: "\(jamfServerURL)JSSResource/policies/id/\(policyId)") else {
+        guard let url = URL(string: "\(jamfServerURL)/JSSResource/policies/id/\(policyId)") else {
             completion(.failure(JamfError(statusCode: 0, error: .invalidEndpoint)))
             return
            }
