@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63C3E8FF2873273E0042EBB5 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 63C3E8FE2873273E0042EBB5 /* Sparkle */; };
 		63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C48283B9C400095A734 /* CallAPI.swift */; };
 		63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4A283B9CF70095A734 /* Constants.swift */; };
 		63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4C283B9EE80095A734 /* JamfAPI.swift */; };
@@ -18,10 +19,6 @@
 		798516F61F7AB0D400EF4C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798516F51F7AB0D400EF4C1D /* Assets.xcassets */; };
 		798516F91F7AB0D400EF4C1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798516F71F7AB0D400EF4C1D /* Main.storyboard */; };
 		79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E142882680E19100C71278 /* JamfSelfServiceParser.swift */; };
-		B51E892D25652D0400F6B621 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; };
-		B51E892E25652D0400F6B621 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B51E893125652D1700F6B621 /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892F25652D1500F6B621 /* LetsMove.framework */; };
-		B51E893225652D1700F6B621 /* LetsMove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B51E892F25652D1500F6B621 /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5916AD72534908E006F0C9B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5916AD62534908E006F0C9B /* Structures.swift */; };
 		B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C15A25253491C0006CFAC9 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
@@ -33,8 +30,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B51E892E25652D0400F6B621 /* Sparkle.framework in CopyFiles */,
-				B51E893225652D1700F6B621 /* LetsMove.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +50,6 @@
 		79E142882680E19100C71278 /* JamfSelfServiceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfSelfServiceParser.swift; sourceTree = "<group>"; };
 		7C72892C216D4512002DF3BA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jamf Switcher.entitlements"; sourceTree = "<group>"; };
-		B51E892B25652CE000F6B621 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		B51E892F25652D1500F6B621 /* LetsMove.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LetsMove.framework; sourceTree = "<group>"; };
 		B5916AD62534908E006F0C9B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		B5C15A25253491C0006CFAC9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,8 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B51E892D25652D0400F6B621 /* Sparkle.framework in Frameworks */,
-				B51E893125652D1700F6B621 /* LetsMove.framework in Frameworks */,
+				63C3E8FF2873273E0042EBB5 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +122,6 @@
 		798516E51F7AB0D400EF4C1D = {
 			isa = PBXGroup;
 			children = (
-				7C4B46CC236B801C00299621 /* Frameworks */,
 				798516F01F7AB0D400EF4C1D /* Jamf Switcher */,
 				798516EF1F7AB0D400EF4C1D /* Products */,
 			);
@@ -161,15 +152,6 @@
 			path = "Jamf Switcher";
 			sourceTree = "<group>";
 		};
-		7C4B46CC236B801C00299621 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B51E892F25652D1500F6B621 /* LetsMove.framework */,
-				B51E892B25652CE000F6B621 /* Sparkle.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +170,9 @@
 			dependencies = (
 			);
 			name = "Jamf Switcher";
+			packageProductDependencies = (
+				63C3E8FE2873273E0042EBB5 /* Sparkle */,
+			);
 			productName = "JSS Switcher";
 			productReference = 798516EE1F7AB0D400EF4C1D /* Jamf Switcher.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +208,9 @@
 				Base,
 			);
 			mainGroup = 798516E51F7AB0D400EF4C1D;
+			packageReferences = (
+				63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = 798516EF1F7AB0D400EF4C1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -407,7 +395,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -422,13 +411,12 @@
 				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,13 +435,12 @@
 				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.dataJAR.JamfSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +470,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63C3E8FE2873273E0042EBB5 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 798516E61F7AB0D400EF4C1D /* Project object */;
 }

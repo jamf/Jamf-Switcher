@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import LetsMove
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,7 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var flushPolicyJSSItem: NSMenuItem!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        PFMoveToApplicationsFolderIfNecessary()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
