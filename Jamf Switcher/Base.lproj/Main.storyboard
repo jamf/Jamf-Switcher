@@ -29,6 +29,12 @@
                                                 <action selector="checkForUpdates:" target="UlC-wO-rsK" id="QIP-vU-XtU"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check For Beta Updates" id="NZ6-Dw-6Bk">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="CLH-WP-cn9" id="5AO-HW-Wuh"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -186,6 +192,11 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="UlC-wO-rsK" customClass="SUUpdater"/>
+                <customObject id="CLH-WP-cn9" customClass="SPUStandardUpdaterController">
+                    <connections>
+                        <outlet property="updaterDelegate" destination="Voe-Tx-rLC" id="4tS-ba-tid"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>

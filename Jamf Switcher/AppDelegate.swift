@@ -6,9 +6,10 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, SPUStandardUserDriverDelegate, SPUUpdaterDelegate {
 
     @IBOutlet weak var showJSSMenuItem: NSMenuItem!
     @IBOutlet weak var exportJSSItem: NSMenuItem!
@@ -30,4 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
+    func allowedChannels(for updater: SPUUpdater) -> Set<String> {
+        print("beta")
+        return Set(["beta"])
+    }
 }
