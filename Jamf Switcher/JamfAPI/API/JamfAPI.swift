@@ -14,7 +14,7 @@ public class JamfAPI: JamfService {
     public let callapi = CallAPI()
     private init() {}
 
-    public func findAllPolicies(jamfServerURL: String, apiKey: String, token: String, completion: @escaping(Result<Policies, JamfError>) -> Void) {
+    public func findAllPolicies(jamfServerURL: String, apiKey: String, token: String = "", completion: @escaping(Result<Policies, JamfError>) -> Void) {
         
         guard let url = URL(string: "\(jamfServerURL)/JSSResource/policies") else {
             completion(.failure(JamfError(statusCode: 0, error: .invalidEndpoint)))
@@ -38,7 +38,7 @@ public class JamfAPI: JamfService {
                            completion: completion)
     }
     
-    public func findPolicyById(policyId: Int, jamfServerURL: String, apiKey: String, token: String, completion: @escaping(Result<PolicyResponse, JamfError>) -> Void) {
+    public func findPolicyById(policyId: Int, jamfServerURL: String, apiKey: String, token: String = "", completion: @escaping(Result<PolicyResponse, JamfError>) -> Void) {
         
         guard let url = URL(string: "\(jamfServerURL)/JSSResource/policies/id/\(policyId)") else {
             completion(.failure(JamfError(statusCode: 0, error: .invalidEndpoint)))

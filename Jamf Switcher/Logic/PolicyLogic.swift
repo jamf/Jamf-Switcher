@@ -25,7 +25,7 @@ public class PolicyLogic {
         return foundPolicesFormated
     }
     
-    public func processPolicy(myPolicies: Policies, policyToFind: String, checkedJSSURL: String, apiKey: String, token: String, flushPolicies: Bool, instanceName: String, completion: @escaping(Result<[String], JamfError>) -> Void) {
+    public func processPolicy(myPolicies: Policies, policyToFind: String, checkedJSSURL: String, apiKey: String, flushPolicies: Bool, instanceName: String, completion: @escaping(Result<[String], JamfError>) -> Void) {
         let foundPolices = retrieveFoundPolicy(myPolices: myPolicies, policyToFind: policyToFind)
         let foundPolicesFormated = retrieveFoundPolicyFormatted(foundPolices: foundPolices)
         var policyReport = [String]()
@@ -34,13 +34,13 @@ public class PolicyLogic {
         if foundPolices.count > 0 {
             for policy in foundPolices {
                 dispatchGroup.enter()
-                JamfLogic().findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, token: token) { result in
+                JamfLogic().findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey) { result in
                     switch result {
                         
                     case .success(let foundPolicy):
                         if (flushPolicies && foundPolicy.policy.general.enabled){
                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
-                                JamfLogic().flushMatchingPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, id: policy.id, token: token) { result in
+                                JamfLogic().flushMatchingPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, id: policy.id) { result in
                                     switch result {
                                         
                                     case .success(_):

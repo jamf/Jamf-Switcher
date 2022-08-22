@@ -30,8 +30,6 @@ class ViewController: NSViewController {
     var policyReport = [String]()
     var policyToFind = ""
     var processedJSSCount = 0
-    
-    var token = ""
 
     @IBOutlet weak var myTableView: NSTableView!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
@@ -442,20 +440,19 @@ class ViewController: NSViewController {
             }
         }
     }
-    
-    //MARK: findMatchingPolices V2
+
+    //MARK: findMatchingPolices V3
     func findMatchingPoliciesV2(jssURL: String, row: Int, apiKey: String) {
         var checkedJSSURL = jssURL
         if checkedJSSURL.suffix(1) == "/" {
             checkedJSSURL = String(jssURL.dropLast())
         }
 
-        
-        JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, token: self.token){ result in
+        JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ result in
             self.processedJSSCount = self.processedJSSCount + 1
             switch result {
             case .success(let myPolicies):
-                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, token: self.token, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
+                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
                     
                     switch result {
                         
@@ -467,7 +464,7 @@ class ViewController: NSViewController {
                             self.savePolicies(csvText: csvText)
                         }
                     case .failure(let error):
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
                         if self.processedJSSCount == self.jssCount {
                             let csvText = self.policyReport.joined(separator: "\n")
                             self.savePolicies(csvText: csvText)
@@ -477,70 +474,18 @@ class ViewController: NSViewController {
                 }
                 
             case .failure(let error):
-                guard error.statusCode == 401 else {
-                    if !self.flushPolicies {
-                       self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                    }
-                    if self.processedJSSCount == self.jssCount {
-                       let csvText = self.policyReport.joined(separator: "\n")
-                        self.savePolicies(csvText: csvText)
-                    }
-                    return
+                if !self.flushPolicies {
+                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
                 }
-                
-                //MARK: Create Token
-                JamfLogic().createAuthToken(jamfServerURL: checkedJSSURL, apiKey: apiKey) { result in
-                    switch result {
-                        
-                    case .success(let auth):
-                        self.token = auth.token
-                        JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, token: self.token){ result in
-                            switch result {
-                            case .success(let myPolicies):
-                                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, token: self.token, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
-                                    
-                                    switch result {
-                                        
-                                    case .success(let report):
-                                        self.policyReport.append(contentsOf: report)
-                                        if self.processedJSSCount == self.jssCount {
-                                            let csvText = self.policyReport.joined(separator: "\n")
-                                            self.savePolicies(csvText: csvText)
-                                        }
-                                    case .failure(let error):
-                                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                                        if self.processedJSSCount == self.jssCount {
-                                            let csvText = self.policyReport.joined(separator: "\n")
-                                            self.savePolicies(csvText: csvText)
-                                        }
-                                    }
-                                    
-                                }
-                                
-                            case .failure(let error):
-                               
-                                if !self.flushPolicies {
-                                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                                }
-                                if self.processedJSSCount == self.jssCount {
-                                   let csvText = self.policyReport.joined(separator: "\n")
-                                    self.savePolicies(csvText: csvText)
-                                }
-
-                            }
-                        }
-                    case .failure(let error):
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode)\"")
-                        if self.processedJSSCount == self.jssCount {
-                            let csvText = self.policyReport.joined(separator: "\n")
-                            self.savePolicies(csvText: csvText)
-                        }
-                    }
+                if self.processedJSSCount == self.jssCount {
+                   let csvText = self.policyReport.joined(separator: "\n")
+                    self.savePolicies(csvText: csvText)
                 }
-
+                return
             }
         }
     }
+  
     
 //    func findMatchingPolicies(jssURL: String, row: Int, apiKey: String) {
 //        var checkedJSSURL = jssURL
