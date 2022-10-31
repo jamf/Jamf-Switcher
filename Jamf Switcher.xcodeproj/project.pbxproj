@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63C3E8FF2873273E0042EBB5 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 63C3E8FE2873273E0042EBB5 /* Sparkle */; };
 		63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C48283B9C400095A734 /* CallAPI.swift */; };
 		63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4A283B9CF70095A734 /* Constants.swift */; };
 		63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4C283B9EE80095A734 /* JamfAPI.swift */; };
@@ -19,6 +18,7 @@
 		798516F61F7AB0D400EF4C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798516F51F7AB0D400EF4C1D /* Assets.xcassets */; };
 		798516F91F7AB0D400EF4C1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798516F71F7AB0D400EF4C1D /* Main.storyboard */; };
 		79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E142882680E19100C71278 /* JamfSelfServiceParser.swift */; };
+		B55C15622910195300715D7B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B55C15612910195300715D7B /* Sparkle */; };
 		B5916AD72534908E006F0C9B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5916AD62534908E006F0C9B /* Structures.swift */; };
 		B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C15A25253491C0006CFAC9 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C3E8FF2873273E0042EBB5 /* Sparkle in Frameworks */,
+				B55C15622910195300715D7B /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +171,7 @@
 			);
 			name = "Jamf Switcher";
 			packageProductDependencies = (
-				63C3E8FE2873273E0042EBB5 /* Sparkle */,
+				B55C15612910195300715D7B /* Sparkle */,
 			);
 			productName = "JSS Switcher";
 			productReference = 798516EE1F7AB0D400EF4C1D /* Jamf Switcher.app */;
@@ -209,7 +209,7 @@
 			);
 			mainGroup = 798516E51F7AB0D400EF4C1D;
 			packageReferences = (
-				63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 798516EF1F7AB0D400EF4C1D /* Products */;
 			projectDirPath = "";
@@ -472,20 +472,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+		B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = 2.x;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		63C3E8FE2873273E0042EBB5 /* Sparkle */ = {
+		B55C15612910195300715D7B /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 63C3E8FD2873273E0042EBB5 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			package = B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
