@@ -46,7 +46,7 @@
         <channel>
             <item>
                 <sparkle:channel>beta</sparkle:channel>
-                <sparkle:version>136</sparkle:version>
+                <sparkle:version>1300</sparkle:version>
                 <title>Version 1.4-beta1</title>
                 <description><![CDATA[
                     <h2>1.4-beta1 (build 136)</h2>
