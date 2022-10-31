@@ -45,11 +45,18 @@
         </item>
         <channel>
             <item>
-                <title>Version 2.0 (Beta 1)</title>
-                <sparkle:channel>beta</sparkle:channel>
-                <sparkle:version>0.01</sparkle:version>
-                <sparkle:shortVersionString>0.0b1</sparkle:shortVersionString>
-                <description><![CDATA[
+				<sparkle:channel>beta</sparkle:channel>
+				<sparkle:version>134</sparkle:version>
+				<title>Version 1.4-beta1</title>
+				<description><![CDATA[
+					<h2>1.4-beta1 (build 134)</h2>
+					<p>Changes in this release:</p>
+					<li>Removed the LetsMove framework (to stop the SystemPolicyAppBundle protection being triggered on macOS 13.0+).</li>
+					<li>Updated Sparkle to Sparkle 2.</li>
+					<li>Resized the app icon.</li>
+					<li>Added support for bearer token auth.</li>
+					<li>Will advise if a policy is disabled, and only flush if enabled.</li>
+					<li>Before flushing will check to see if a policy is disabled, and only flush if enabled. And will notify if disabled in searches.</li>
                     <h2>1.3.1 (build 133)</h2>
                     <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/11" class="issue-link">#11</a> - Added support for Jamf Pro 10.33+'s changes to the Self Service Bookmark XML.</li>
                     </br>
@@ -77,13 +84,13 @@
                     <h2>1.0 (build 40)</h2>
                     <li>Release!</li>
                 ]]></description>
-                    <pubDate>Friday, 08 July 2022 15:42 +0000</pubDate>
-                    <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.3.1/Jamf.Switcher.zip"
-                    sparkle:version="133"
+                    <pubDate>Monday, 31 October 2022 15:00 +0000</pubDate>
+                    <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4-beta1/Jamf.Switcher.zip"
+                    sparkle:version="134"
                     length="6689838"
                     type="application/octet-stream"
                     sparkle:edSignature="2GT91jVEWzrKZHjffOLhytOEQlOpTS7Ma/v/Vv7XOTo6RRQV/yz54iI76WzL6rjj64sL6sckZDK5SmDVAXdhCA==" />
-                    <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
+                    <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             </item>
         </channel>
     </channel>
