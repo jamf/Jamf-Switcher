@@ -12,7 +12,6 @@ public class JamfLogic {
     
     public let jamfService: JamfService
     
-    
     public init(jamfService: JamfService = JamfAPI.shared) {
         self.jamfService = jamfService
     }
@@ -44,7 +43,7 @@ public class JamfLogic {
                     }
 
                     //MARK: Create Token
-                    JamfLogic().createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
+                    self.createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
                         switch result {
                             case .success(let auth):
                                 self.jamfService.findAllPolicies(jamfServerURL: jamfServerURL, apiKey: apiKey, token: auth.token) { result in
@@ -64,13 +63,28 @@ public class JamfLogic {
         }
     }
     
-    public func findPolicyById(policyId: Int, jamfServerURL: String, apiKey: String, completion: @escaping (Result<PolicyResponse, JamfError>) -> Void) {
+    public func findPolicyById(policyId: Int, jamfServerURL: String, apiKey: String, flushPolicies: Bool, completion: @escaping (Result<PolicyResponse, JamfError>) -> Void) {
      
         self.jamfService.findPolicyById(policyId: policyId, jamfServerURL: jamfServerURL, apiKey: apiKey, token: "") { result in
             
             switch result {
-            case .success(let policy):
-                completion(.success(policy))
+            case .success(let result):
+                if (flushPolicies && result.policy.general.enabled){
+                    print("1 \(result.policy.general.enabled)")
+                   
+                    self.flushMatchingPolicies(jamfServerURL: jamfServerURL, apiKey: apiKey, id: policyId) { resp in
+                        switch resp {
+                            case .success(_) :
+                                print("Flushed")
+                                break
+                            case .failure(_) :
+                                print("Not Flushed")
+                                break
+                        }
+                        print("Flushed")
+                    }
+                }
+                completion(.success(result))
             case .failure(let error):
                 guard error.statusCode == 401 else {
                     completion(.failure(error))
@@ -78,13 +92,27 @@ public class JamfLogic {
                 }
 
                 //MARK: Create Token
-                JamfLogic().createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
+                self.createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
                     switch result {
                         case .success(let auth):
                         self.jamfService.findPolicyById(policyId: policyId, jamfServerURL: jamfServerURL, apiKey: apiKey, token: auth.token) { result in
                                 switch result {
-                                    case .success(let policy):
-                                        completion(.success(policy))
+                                    case .success(let result):
+                                        if (flushPolicies && result.policy.general.enabled){
+                                            print("2 \(result.policy.general.enabled)")
+                                            self.flushMatchingPolicies(jamfServerURL: jamfServerURL, apiKey: apiKey, id: policyId) { resp in
+                                                switch resp {
+                                                    case .success(_) :
+                                                        print("Flushed")
+                                                        break
+                                                    case .failure(_) :
+                                                        print("Not Flushed")
+                                                        break
+                                                }
+                                                print("Flushed")
+                                            }
+                                        }
+                                        completion(.success(result))
                                     case .failure(let error):
                                         completion(.failure(error))
                                 }
@@ -96,13 +124,14 @@ public class JamfLogic {
             }
         }
     }
-    
+
     public func flushMatchingPolicies(jamfServerURL: String, apiKey: String, id: Int, completion: @escaping (Result<JamfResponse, JamfError>) -> Void) {
      
         self.jamfService.flushMatchingPolicies(jamfServerURL: jamfServerURL, apiKey: apiKey, id: id, token: "") { result in
             
             switch result {
             case .success(let policies):
+                print("Flushed!!")
                 completion(.success(policies))
             case .failure(let error):
                 guard error.statusCode == 401 else {
@@ -111,9 +140,10 @@ public class JamfLogic {
                 }
 
                 //MARK: Create Token
-                JamfLogic().createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
+                self.createAuthToken(jamfServerURL: jamfServerURL, apiKey: apiKey) { result in
                     switch result {
                         case .success(let auth):
+                        print("Flush Token: \(auth.token)")
                         self.jamfService.flushMatchingPolicies(jamfServerURL: jamfServerURL, apiKey: apiKey, id: id, token: auth.token) { result in
                                 switch result {
                                     case .success(let policies):

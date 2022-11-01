@@ -11,6 +11,8 @@ import Cocoa
 
 public class PolicyLogic {
     
+    public let jamfLogic = JamfLogic()
+    
     public func retrieveFoundPolicy(myPolices: Policies, policyToFind: String) -> [Policy] {
         let foundPolices = myPolices.policies.filter{$0.name.lowercased().contains(policyToFind.lowercased())}
         print(foundPolices)
@@ -30,33 +32,24 @@ public class PolicyLogic {
         let foundPolicesFormated = retrieveFoundPolicyFormatted(foundPolices: foundPolices)
         var policyReport = [String]()
         let dispatchGroup = DispatchGroup()
-        
+
         if foundPolices.count > 0 {
             for policy in foundPolices {
                 dispatchGroup.enter()
-                JamfLogic().findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey) { result in
+                jamfLogic.findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, flushPolicies: flushPolicies) { result in
                     switch result {
                         
                     case .success(let foundPolicy):
                         if (flushPolicies && foundPolicy.policy.general.enabled){
-                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
-                                JamfLogic().flushMatchingPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey, id: policy.id) { result in
-                                    switch result {
-                                        
-                                    case .success(_):
-                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
-                                    case .failure(_):
-                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flush Failed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
-                                    }
-                                }
-                            })
-                            
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            dispatchGroup.leave()
                         } else {
                             policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            dispatchGroup.leave()
                         }
-                        dispatchGroup.leave()
+                        
                     case .failure(let error):
-                        print(error)
+                        print("Error: \(error)")
                         policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Not Found")
                         dispatchGroup.leave()
                     }
