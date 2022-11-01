@@ -1,55 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
-        <item>
-            <sparkle:channel>beta</sparkle:channel>
-            <sparkle:version>136</sparkle:version>
-            <title>Version 1.4-beta1</title>
-            <description><![CDATA[
-                <h2>1.4-beta1 (build 136)</h2>
-                <p>Changes in this release:</p>
-                <li>Removed the LetsMove framework (to stop the SystemPolicyAppBundle protection being triggered on macOS 13.0+)</li>
-                <li>Updated Sparkle to Sparkle 2</li>
-                <li>Resized the app icon</li>
-                <li>Added support for bearer token auth</li>
-                <li>Will advise if a policy is disabled, and only flush if enabled</li>
-                <li>Before flushing will check to see if a policy is disabled, and only flush if enabled. And will notify if disabled in searches</li>
-                <h2>1.3.1 (build 133)</h2>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/11" class="issue-link">#11</a> - Added support for Jamf Pro 10.33+'s changes to the Self Service Bookmark XML.</li>
-                </br>
-                <h2>1.3 (build 118)</h2>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/9" class="issue-link">#9</a> - Adds support for Jamf Pro 10.30+'s new Self Service bookmark format.</li>
-                </br>
-                <h2>1.2.1 (build 109)</h2>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/3" class="issue-link">#3</a> - Silicon support, from updating LetsMove.framework to 1.25 and Sparkle.framework to 1.24.0.</li>
-                </br>
-                <h2>1.2 (build 106)</h2>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/4" class="issue-link">#4</a> - Adds "Find Policy" functionality via CMD + F or Window > Find Policy.</li>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/5" class="issue-link">#5</a> - Adds "Flush Policy" functionality via OPTION+ CMD + F or Window > Flush Policy.</li>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/6" class="issue-link">#6</a> - Adds "Export" functional via CMD + E or Window > Export.</li>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/7" class="issue-link">#7</a> - Adds full screen support.</li>
-                <li><a href="https://github.com/dataJAR/Jamf-Switcher/issues/8" class="issue-link">#8</a> - Tested on Big Sur with amendments made as needed.</li>
-                </br>
-                <li>For #4, #5, and #6 these work across any Jamf Pro listed in the main view. So if searching for a sub section then they will be enacted upon our their details will be exported, alone.</li>
-                </br>
-                <li>#4 and the #5 happen via the Jamf Pro API, as such you'll be asked for details which will be stored in your keychain for when those options are ran again.</li>
-                </br>
-                <h2>1.1 (build 58)</h2>
-                <li>Strips /?failover from a JPS URL when writing to the com.jamfsoftware.jss.plist.. but keeps when opening Safari</li>
-                <h2>1.0.1 (build 48)</h2>
-                <<li>Updated bundle identifier</li>
-                <h2>1.0 (build 40)</h2>
-                <li>Release!</li>]]>
-            </description>
-            <pubDate>Monday, 31 October 2022 15:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4-beta1/Jamf.Switcher.zip"
-            length="5067130"
-            type="application/octet-stream"
-            sparkle:edSignature="Z/tLPrMCXG0pWqVMlBPK1OoU6xk/xINfpEtxYtl7vje7QfDAjGJg0ilcZxZDcuNSv5kxhps3iuKauly/NYZ7Ag==" />
-            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-        </item>
-    </channel>
-    <channel>
         <title>Jamf Switcher's Changelog</title>
         <link>https://raw.githubusercontent.com/dataJAR/Jamf-Switcher/appcast/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
