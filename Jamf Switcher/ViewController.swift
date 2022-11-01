@@ -444,12 +444,13 @@ class ViewController: NSViewController {
     //MARK: findMatchingPolices V3
     func findMatchingPoliciesV2(jssURL: String, row: Int, apiKey: String) {
         var checkedJSSURL = jssURL
-        if checkedJSSURL.suffix(1) == "/" {
-            checkedJSSURL = String(jssURL.dropLast())
-        }
         if checkedJSSURL.contains("?failover") {
             checkedJSSURL = checkedJSSURL.replacingOccurrences(of: "?failover", with: "")
         }
+        if checkedJSSURL.suffix(1) == "/" {
+            checkedJSSURL = String(checkedJSSURL.dropLast())
+        }
+        print(checkedJSSURL)
         self.processedJSSCount = self.processedJSSCount + 1
         print("policy # \(self.processedJSSCount) of \(self.jssCount)")
         JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ result in
