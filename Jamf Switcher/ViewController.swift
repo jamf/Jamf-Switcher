@@ -447,9 +447,12 @@ class ViewController: NSViewController {
         if checkedJSSURL.suffix(1) == "/" {
             checkedJSSURL = String(jssURL.dropLast())
         }
-
+        if checkedJSSURL.contains("?failover") {
+            checkedJSSURL = checkedJSSURL.replacingOccurrences(of: "?failover", with: "")
+        }
+        self.processedJSSCount = self.processedJSSCount + 1
+        print("policy # \(self.processedJSSCount) of \(self.jssCount)")
         JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ result in
-            self.processedJSSCount = self.processedJSSCount + 1
             switch result {
             case .success(let myPolicies):
                 PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
@@ -459,27 +462,37 @@ class ViewController: NSViewController {
                     case .success(let report):
                         self.policyReport.append(contentsOf: report)
                         if self.processedJSSCount == self.jssCount {
-                            let csvText = self.policyReport.joined(separator: "\n")
-                            
-                            self.savePolicies(csvText: csvText)
+                            DispatchQueue.main.async {
+                                self.progressView.isHidden = true
+                                let csvText = self.policyReport.joined(separator: "\n")
+                                self.savePolicies(csvText: csvText)
+                            }
                         }
+                        return
                     case .failure(let error):
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
                         if self.processedJSSCount == self.jssCount {
-                            let csvText = self.policyReport.joined(separator: "\n")
-                            self.savePolicies(csvText: csvText)
+                            DispatchQueue.main.async {
+                                self.progressView.isHidden = true
+                                let csvText = self.policyReport.joined(separator: "\n")
+                                self.savePolicies(csvText: csvText)
+                            }
                         }
+                        return
                     }
                     
                 }
                 
             case .failure(let error):
                 if !self.flushPolicies {
-                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
+                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
                 }
                 if self.processedJSSCount == self.jssCount {
-                   let csvText = self.policyReport.joined(separator: "\n")
-                    self.savePolicies(csvText: csvText)
+                    DispatchQueue.main.async {
+                        self.progressView.isHidden = true
+                        let csvText = self.policyReport.joined(separator: "\n")
+                        self.savePolicies(csvText: csvText)
+                    }
                 }
                 return
             }

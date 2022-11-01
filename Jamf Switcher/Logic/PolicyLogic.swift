@@ -44,15 +44,15 @@ public class PolicyLogic {
                                     switch result {
                                         
                                     case .success(_):
-                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                                     case .failure(_):
-                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flush Failed" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flush Failed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                                     }
                                 }
                             })
                             
                         } else {
-                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found" + "," + "\"\(foundPolicy.policy.general.enabled)\"")
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                         }
                         dispatchGroup.leave()
                     case .failure(let error):
@@ -66,5 +66,14 @@ public class PolicyLogic {
         dispatchGroup.notify(queue: .main) {
             completion(.success(policyReport))
         }
+    }
+}
+
+
+private func PolicyCheck(_ policy: Bool) -> String {
+    if policy {
+        return "Enabled"
+    } else {
+        return "Disabled"
     }
 }
