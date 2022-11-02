@@ -498,7 +498,7 @@ class ViewController: NSViewController {
         if checkedJSSURL.suffix(1) == "/" {
             checkedJSSURL = String(checkedJSSURL.dropLast())
         }
-        print(checkedJSSURL)
+//        print(checkedJSSURL)
         return checkedJSSURL
     }
     

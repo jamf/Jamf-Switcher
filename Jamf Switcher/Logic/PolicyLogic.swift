@@ -34,8 +34,8 @@ public class PolicyLogic {
         let dispatchGroup = DispatchGroup()
 
         if foundPolices.count > 0 {
-            print("FoundPolicies - \(foundPolices.count)")
-            print(foundPolicies)
+//            print("FoundPolicies - \(foundPolices.count)")
+//            print(foundPolicies)
             for policy in foundPolices {
                 dispatchGroup.enter()
                 jamfLogic.findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, flushPolicies: flushPolicies) { result in
