@@ -43,19 +43,21 @@ public class PolicyLogic {
                         
                     case .success(let foundPolicy):
                         if (flushPolicies && foundPolicy.policy.general.enabled){
-                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Flushed")
                             dispatchGroup.leave()
                         } else {
-                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Found" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                             dispatchGroup.leave()
                         }
                         
                     case .failure( _):
-                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Not Found")
+                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + ", N/A")
                         dispatchGroup.leave()
                     }
                 }
             }
+        } else {
+            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + ", Not Found , N/A")
         }
         dispatchGroup.notify(queue: .main) {
             completion(.success(policyReport))

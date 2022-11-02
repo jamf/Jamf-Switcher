@@ -389,7 +389,7 @@ class ViewController: NSViewController {
             currentJJSCounter = 0
             processedJSSCount = 0
             policyReport = [String]()
-            self.policyReport.append("\"Instance Name\"" + "," + "URL" + "," + "Policy" + "," + "\"Output\"," + "\"Policy Status\"")
+            self.policyReport.append("Instance Name, URL , Result, Status")
             progressView.animator().alphaValue = 0.0
             progressView.wantsLayer = true
             NSAnimationContext.runAnimationGroup({ (context) in
@@ -470,7 +470,7 @@ class ViewController: NSViewController {
                             self.savePolicies(csvText: csvText)
                         }
                     case .failure(let error):
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"")
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"" + "," + "N/A")
                         if self.processedJSSCount == self.jssCount {
                             let csvText = self.policyReport.joined(separator: "\n")
                             self.savePolicies(csvText: csvText)
@@ -480,7 +480,7 @@ class ViewController: NSViewController {
                
                 break
             case .failure(let error):
-                self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"")
+                self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"" + "," + "N/A")
                 if self.processedJSSCount == self.jssCount {
                     let csvText = self.policyReport.joined(separator: "\n")
                     self.savePolicies(csvText: csvText)
