@@ -15,7 +15,7 @@ public class PolicyLogic {
     
     public func retrieveFoundPolicy(myPolices: Policies, policyToFind: String) -> [Policy] {
         let foundPolices = myPolices.policies.filter{$0.name.lowercased().contains(policyToFind.lowercased())}
-        print(foundPolices)
+        //print(foundPolices)
         return foundPolices
     }
     
@@ -27,13 +27,14 @@ public class PolicyLogic {
         return foundPolicesFormated
     }
     
-    public func processPolicy(myPolicies: Policies, policyToFind: String, checkedJSSURL: String, apiKey: String, flushPolicies: Bool, instanceName: String, completion: @escaping(Result<[String], JamfError>) -> Void) {
-        let foundPolices = retrieveFoundPolicy(myPolices: myPolicies, policyToFind: policyToFind)
+    public func processPolicy(foundPolicies: Policies, policyToFind: String, checkedJSSURL: String, apiKey: String, flushPolicies: Bool, instanceName: String, completion: @escaping(Result<[String], JamfError>) -> Void) {
+        let foundPolices = retrieveFoundPolicy(myPolices: foundPolicies, policyToFind: policyToFind)
         let foundPolicesFormated = retrieveFoundPolicyFormatted(foundPolices: foundPolices)
         var policyReport = [String]()
         let dispatchGroup = DispatchGroup()
 
         if foundPolices.count > 0 {
+            //print("FoundPolicies - \(foundPolices.count)")
             for policy in foundPolices {
                 dispatchGroup.enter()
                 jamfLogic.findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, flushPolicies: flushPolicies) { result in
@@ -48,8 +49,7 @@ public class PolicyLogic {
                             dispatchGroup.leave()
                         }
                         
-                    case .failure(let error):
-                        print("Error: \(error)")
+                    case .failure( _):
                         policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Not Found")
                         dispatchGroup.leave()
                     }

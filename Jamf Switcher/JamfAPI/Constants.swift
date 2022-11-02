@@ -25,4 +25,5 @@ public enum jsonError: Error {
     case valueNotFound
     case typeMisMatch
     case unknownError
+    case noHostFound
 }

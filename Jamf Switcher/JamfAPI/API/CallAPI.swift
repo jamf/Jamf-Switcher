@@ -22,6 +22,9 @@ public class CallAPI {
         let dataTask = urlSession.dataTask(with: request) {data, resp, error in
             
             guard let statusCode = (resp as? HTTPURLResponse)?.statusCode else {
+                completion(.failure(
+                    JamfError(statusCode: 0, error: .noHostFound)
+                ))
                 return
             }
             

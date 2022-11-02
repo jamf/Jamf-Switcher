@@ -30,6 +30,9 @@ class ViewController: NSViewController {
     var policyReport = [String]()
     var policyToFind = ""
     var processedJSSCount = 0
+    
+    var jamfLogic = JamfLogic()
+    var policyLogic = PolicyLogic()
 
     @IBOutlet weak var myTableView: NSTableView!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
@@ -386,6 +389,7 @@ class ViewController: NSViewController {
             currentJJSCounter = 0
             processedJSSCount = 0
             policyReport = [String]()
+            self.policyReport.append("\"Instance Name\"" + "," + "URL" + "," + "Policy" + "," + "\"Output\"," + "\"Policy Status\"")
             progressView.animator().alphaValue = 0.0
             progressView.wantsLayer = true
             NSAnimationContext.runAnimationGroup({ (context) in
@@ -407,7 +411,7 @@ class ViewController: NSViewController {
             progressView.isHidden = true
             return
         }
-        findMatchingPoliciesV2(jssURL: jssURL, row: row, apiKey: apiKey)
+        findMatchingPoliciesV3(jssURL: jssURL, row: row, apiKey: apiKey)
         currentJJSCounter = currentJJSCounter + 1
         self.progressIndicator.doubleValue = Double(currentJJSCounter)
         if currentJJSCounter < jssCount {
@@ -441,9 +445,53 @@ class ViewController: NSViewController {
         }
     }
 
+    
+    
     //MARK: findMatchingPolices V3
-    func findMatchingPoliciesV2(jssURL: String, row: Int, apiKey: String) {
-        var checkedJSSURL = jssURL
+    func findMatchingPoliciesV3(jssURL: String, row: Int, apiKey: String) {
+        let checkedJSSURL = ParseURL(url: jssURL)
+        
+        //MARK: Find ALL Policies
+        jamfLogic.findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ response in
+            self.processedJSSCount = self.processedJSSCount + 1
+            //print("processed - \(self.processedJSSCount) of \(self.jssCount)")
+            
+            switch response {
+                
+            case .success(let foundPolicies):
+                //MARK: Process Policies
+                self.policyLogic.processPolicy(foundPolicies: foundPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
+                    switch result {
+                        
+                    case .success(let report):
+                        self.policyReport.append(contentsOf: report)
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
+                    case .failure(let error):
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"")
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
+                    }
+                }
+               
+                break
+            case .failure(let error):
+                self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"")
+                if self.processedJSSCount == self.jssCount {
+                    let csvText = self.policyReport.joined(separator: "\n")
+                    self.savePolicies(csvText: csvText)
+                }
+                break
+            }
+        }
+    }
+  
+    private func ParseURL(url: String) -> String {
+        var checkedJSSURL = url
         if checkedJSSURL.contains("?failover") {
             checkedJSSURL = checkedJSSURL.replacingOccurrences(of: "?failover", with: "")
         }
@@ -451,55 +499,8 @@ class ViewController: NSViewController {
             checkedJSSURL = String(checkedJSSURL.dropLast())
         }
         print(checkedJSSURL)
-        self.processedJSSCount = self.processedJSSCount + 1
-        print("policy # \(self.processedJSSCount) of \(self.jssCount)")
-        JamfLogic().findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ result in
-            switch result {
-            case .success(let myPolicies):
-                PolicyLogic().processPolicy(myPolicies: myPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
-                    
-                    switch result {
-                        
-                    case .success(let report):
-                        self.policyReport.append(contentsOf: report)
-                        if self.processedJSSCount == self.jssCount {
-                            DispatchQueue.main.async {
-                                self.progressView.isHidden = true
-                                let csvText = self.policyReport.joined(separator: "\n")
-                                self.savePolicies(csvText: csvText)
-                            }
-                        }
-                        return
-                    case .failure(let error):
-                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
-                        if self.processedJSSCount == self.jssCount {
-                            DispatchQueue.main.async {
-                                self.progressView.isHidden = true
-                                let csvText = self.policyReport.joined(separator: "\n")
-                                self.savePolicies(csvText: csvText)
-                            }
-                        }
-                        return
-                    }
-                    
-                }
-                
-            case .failure(let error):
-                if !self.flushPolicies {
-                   self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "" + "," + "\"Error. \(error.statusCode): \(error.localizedDescription)\"")
-                }
-                if self.processedJSSCount == self.jssCount {
-                    DispatchQueue.main.async {
-                        self.progressView.isHidden = true
-                        let csvText = self.policyReport.joined(separator: "\n")
-                        self.savePolicies(csvText: csvText)
-                    }
-                }
-                return
-            }
-        }
+        return checkedJSSURL
     }
-  
     
 //    func findMatchingPolicies(jssURL: String, row: Int, apiKey: String) {
 //        var checkedJSSURL = jssURL
