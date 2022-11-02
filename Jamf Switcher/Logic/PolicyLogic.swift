@@ -34,7 +34,8 @@ public class PolicyLogic {
         let dispatchGroup = DispatchGroup()
 
         if foundPolices.count > 0 {
-            //print("FoundPolicies - \(foundPolices.count)")
+            print("FoundPolicies - \(foundPolices.count)")
+            print(foundPolicies)
             for policy in foundPolices {
                 dispatchGroup.enter()
                 jamfLogic.findPolicyById(policyId: policy.id, jamfServerURL: checkedJSSURL, apiKey: apiKey, flushPolicies: flushPolicies) { result in
@@ -42,15 +43,15 @@ public class PolicyLogic {
                         
                     case .success(let foundPolicy):
                         if (flushPolicies && foundPolicy.policy.general.enabled){
-                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Flushed" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                             dispatchGroup.leave()
                         } else {
-                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
+                            policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Found" + "," + "\"\(PolicyCheck(foundPolicy.policy.general.enabled))\"")
                             dispatchGroup.leave()
                         }
                         
                     case .failure( _):
-                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Not Found")
+                        policyReport.append("\"\(instanceName)\"" + "," + checkedJSSURL + "," + "\"\(policy.name)\"" + "," + "Not Found")
                         dispatchGroup.leave()
                     }
                 }

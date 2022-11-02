@@ -43,7 +43,6 @@ public class JamfAPI: JamfService {
             completion(.failure(JamfError(statusCode: 0, error: .invalidEndpoint)))
             return
            }
-        print(url)
         //URL Request
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -67,7 +66,6 @@ public class JamfAPI: JamfService {
             completion(.failure(JamfError(statusCode: 0, error: .invalidEndpoint)))
             return
            }
-        print(url)
         //URL Request
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
