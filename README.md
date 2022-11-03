@@ -49,6 +49,7 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 	- 'url' is set to the URL of the entry selected
 
 14. The selected app is launched.
+15. In addition, pressing CMD + F will search each instance in the window for a policy based on a string entered, and CMD + OPTION +F will flush a policy matching the criteria entered.
 
 # Alternatives
 Other folks have created their own apps which reach the same end goal:
