@@ -3,9 +3,18 @@
     <channel>
         <item>
             <sparkle:channel>beta</sparkle:channel>
-            <title>Version 1.4-beta1</title>
+            <title>Version 1.4.1-beta1</title>
             <description><![CDATA[
+                <h2>1.4.1-beta1 (build 146)</h2>
+                <p>Changes in this release:</p>
+                <li>Correctly parses bookmarks with either: Jamf, JPS or JSS within the description.</li>
+                <li>Removes trailing /'s from URL's</li>
                 <h2>1.4-beta1 (build 136)</h2>
+                <p>Changes in this release:</p>
+                <li>Removed the LetsMove framework (to stop the SystemPolicyAppBundle protection being triggered on macOS 13.0+)</li>
+                <li>Updated Sparkle to Sparkle 2</li>
+                <li>Resized the app icon</li>
+                <h2>1.4.1-beta1 (build 146)</h2>
                 <p>Changes in this release:</p>
                 <li>Removed the LetsMove framework (to stop the SystemPolicyAppBundle protection being triggered on macOS 13.0+)</li>
                 <li>Updated Sparkle to Sparkle 2</li>
@@ -40,12 +49,12 @@
                 <h2>1.0 (build 40)</h2>
                 <li>Release!</li>]]>
             </description>
-            <pubDate>Monday, 31 October 2022 15:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4-beta1/Jamf.Switcher.zip"
-            sparkle:version="136"
-            length="5067130"
+            <pubDate>Tuesday, 03 January 2023 14:45 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4.1-beta1/Jamf.Switcher.zip"
+            sparkle:version="146"
+            length="6465818"
             type="application/octet-stream"
-            sparkle:edSignature="Z/tLPrMCXG0pWqVMlBPK1OoU6xk/xINfpEtxYtl7vje7QfDAjGJg0ilcZxZDcuNSv5kxhps3iuKauly/NYZ7Ag==" />
+            sparkle:edSignature="B6XCXdROWgtcc14l1caMQxvoPm9in4Yv71uOT0PznTAJQ8b6DJ9w5CHXk7CcN9WOzL5n+mm5ZSQg9QnGTZ8kDw==" />
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
         </item>
     </channel>
