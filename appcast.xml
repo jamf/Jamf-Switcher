@@ -5,7 +5,7 @@
             <sparkle:channel>beta</sparkle:channel>
             <title>Version 1.4.1-beta1</title>
             <description><![CDATA[
-                <h2>1.4.1-beta1 (build 146)</h2>
+                <h2>1.4.1-beta1 (build 147)</h2>
                 <p>Changes in this release:</p>
                 <li>Correctly parses bookmarks with either: Jamf, JPS or JSS within the description.</li>
                 <li>Removes trailing /'s from URL's</li>
@@ -49,12 +49,12 @@
                 <h2>1.0 (build 40)</h2>
                 <li>Release!</li>]]>
             </description>
-            <pubDate>Tuesday, 03 January 2023 14:45 +0000</pubDate>
+            <pubDate>Tuesday, 03 January 2023 15:15 +0000</pubDate>
             <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4.1-beta1/Jamf.Switcher.zip"
-            sparkle:version="146"
-            length="6465818"
+            sparkle:version="147"
+            length="5067676"
             type="application/octet-stream"
-            sparkle:edSignature="B6XCXdROWgtcc14l1caMQxvoPm9in4Yv71uOT0PznTAJQ8b6DJ9w5CHXk7CcN9WOzL5n+mm5ZSQg9QnGTZ8kDw==" />
+            sparkle:edSignature="qM9ERZm6MWQYV/5/4dCyLomjMq0AswHFZUajlfCnSr63tuVrSVI/GhMNuC/MqW3gQqiYTVsfJOb6Od1nWzBQBg==" />
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
         </item>
     </channel>
