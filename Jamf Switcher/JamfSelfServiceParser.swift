@@ -77,7 +77,11 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
         foundCharacters = foundCharacters + string
         if foundObject && foundBookMark {
             if foundURL && url == "" {
-                url = foundCharacters
+                if foundCharacters.last == "/" {
+                    url = String(foundCharacters.dropLast())
+                } else {
+                    url = foundCharacters
+                }
             }
             
             if foundName && name == "" {
