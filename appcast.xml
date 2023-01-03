@@ -64,8 +64,12 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-        <title>Version 1.4</title>
+        <title>Version 1.4.1</title>
             <description><![CDATA[
+                <h2>1.4.1 (build 147)</h2>
+                <p>Changes in this release:</p>
+                <li>Correctly parses bookmarks with either: Jamf, JPS or JSS within the description.</li>
+                <li>Removes trailing /'s from URL's</li>
                 <h2>1.4 (build 140)</h2>
                 <p>Changes in this release:</p>
                 <li>Removed the LetsMove framework (to stop the SystemPolicyAppBundle protection being triggered on macOS 13.0+)</li>
@@ -101,12 +105,12 @@
                 <h2>1.0 (build 40)</h2>
                 <li>Release!</li>]]>
             </description>
-            <pubDate>Thursday, 03 November 2022 12:00 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4/Jamf.Switcher.zip"
-            sparkle:version="140"
-            length="5066048" 
-            type="application/octet-stream" 
-            sparkle:edSignature="9+6FUoBR2MdNJrYRbL/uXve7Ojj2V81GtQfEPOEhf8vUkZNaDNz1QP3b+wjEDTVKGUOdH2ZJ6QKX+kwZ4YzXBQ==" />
+            <pubDate>Tuesday, 03 January 2023 15:15 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4.1/Jamf.Switcher.zip"
+            sparkle:version="147"
+            length="5067676"
+            type="application/octet-stream"
+            sparkle:edSignature="qM9ERZm6MWQYV/5/4dCyLomjMq0AswHFZUajlfCnSr63tuVrSVI/GhMNuC/MqW3gQqiYTVsfJOb6Od1nWzBQBg==" />
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
         </item>
     </channel>
