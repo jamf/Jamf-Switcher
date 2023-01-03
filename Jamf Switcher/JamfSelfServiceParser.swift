@@ -94,7 +94,7 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
 
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-            if jssdescription.lowercased() == "jss" {
+        if jssdescription.lowercased().contains("jamf") || jssdescription.lowercased().contains("jps") || jssdescription.lowercased().contains("jss"){
                 if foundDescription && foundURL && foundName && addInstance {
                     let foundInstance = JSS(name: name, url: url)
                     jssInstances.append(foundInstance)
