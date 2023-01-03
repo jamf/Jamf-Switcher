@@ -72,12 +72,16 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
         }
         
     }
-    
+
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         foundCharacters = foundCharacters + string
         if foundObject && foundBookMark {
             if foundURL && url == "" {
-                url = foundCharacters
+                if foundCharacters.last == "/" {
+                    url = String(foundCharacters.dropLast())
+                } else {
+                    url = foundCharacters
+                }
             }
             
             if foundName && name == "" {
@@ -92,9 +96,8 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
         }
     }
 
-    
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-            if jssdescription.lowercased() == "jss" {
+        if jssdescription.lowercased().contains("jamf") || jssdescription.lowercased().contains("jps") || jssdescription.lowercased().contains("jss"){
                 if foundDescription && foundURL && foundName && addInstance {
                     let foundInstance = JSS(name: name, url: url)
                     jssInstances.append(foundInstance)
@@ -103,7 +106,4 @@ class JamfSelfServiceParser: NSObject, XMLParserDelegate {
             }
     }
 
-    
-    
-    
 }
