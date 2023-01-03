@@ -8,7 +8,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
+
     //Location of Service Service files for Jamf Pro 10.29 and below
     let managedPluginsPath =  "/Library/Application Support/JAMF/Self Service/Managed Plug-ins/"
     
@@ -30,6 +30,9 @@ class ViewController: NSViewController {
     var policyReport = [String]()
     var policyToFind = ""
     var processedJSSCount = 0
+    
+    var jamfLogic = JamfLogic()
+    var policyLogic = PolicyLogic()
 
     @IBOutlet weak var myTableView: NSTableView!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
@@ -327,41 +330,41 @@ class ViewController: NSViewController {
         processPolices()
     }
 
-    func flushMatchingPolicies(jssURL: String, apiKey: String , id: Int ) {
-        var checkedJSSURL = jssURL
-        if checkedJSSURL.suffix(1) == "/" {
-            checkedJSSURL = String(jssURL.dropLast())
-        }
-        let jssURLQuery = checkedJSSURL + "/JSSResource/logflush/policies/id/\(id)/interval/Zero+Days"
-        let url = URL(string: jssURLQuery)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("Basic \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Accept")
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Authorization" : "Basic \(apiKey)", "Content-Type" : "application/xml", "Accept" : "application/xml"]
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            var responseFromJSS: HTTPURLResponse = HTTPURLResponse()
-            if let httpResponse = response as? HTTPURLResponse {
-                responseFromJSS = httpResponse
-            }
-            
-            guard error == nil && ( responseFromJSS.statusCode == 200 || responseFromJSS.statusCode == 201 ) else {
-                DispatchQueue.main.async(){
-                        DispatchQueue.main.async(){
-                        }
-                }
-                return
-            }
-            DispatchQueue.main.async(){
-                    DispatchQueue.main.async(){
-                    }
-            }
-        }
-        task.resume()
-    }
+//    func flushMatchingPolicies(jssURL: String, apiKey: String , id: Int ) {
+//        var checkedJSSURL = jssURL
+//        if checkedJSSURL.suffix(1) == "/" {
+//            checkedJSSURL = String(jssURL.dropLast())
+//        }
+//        let jssURLQuery = checkedJSSURL + "/JSSResource/logflush/policies/id/\(id)/interval/Zero+Days"
+//        let url = URL(string: jssURLQuery)!
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "DELETE"
+//        request.setValue("Basic \(apiKey)", forHTTPHeaderField: "Authorization")
+//        request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
+//        request.setValue("application/xml; charset=utf-8", forHTTPHeaderField: "Accept")
+//        let configuration = URLSessionConfiguration.default
+//        configuration.httpAdditionalHeaders = ["Authorization" : "Basic \(apiKey)", "Content-Type" : "application/xml", "Accept" : "application/xml"]
+//
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            var responseFromJSS: HTTPURLResponse = HTTPURLResponse()
+//            if let httpResponse = response as? HTTPURLResponse {
+//                responseFromJSS = httpResponse
+//            }
+//
+//            guard error == nil && ( responseFromJSS.statusCode == 200 || responseFromJSS.statusCode == 201 ) else {
+//                DispatchQueue.main.async(){
+//                        DispatchQueue.main.async(){
+//                        }
+//                }
+//                return
+//            }
+//            DispatchQueue.main.async(){
+//                    DispatchQueue.main.async(){
+//                    }
+//            }
+//        }
+//        task.resume()
+//    }
 
     // MARK: Policy Find
     @IBAction func getPolicySearch(_ sender: Any) {
@@ -386,6 +389,7 @@ class ViewController: NSViewController {
             currentJJSCounter = 0
             processedJSSCount = 0
             policyReport = [String]()
+            self.policyReport.append("Instance Name, URL , Result, Status")
             progressView.animator().alphaValue = 0.0
             progressView.wantsLayer = true
             NSAnimationContext.runAnimationGroup({ (context) in
@@ -407,7 +411,7 @@ class ViewController: NSViewController {
             progressView.isHidden = true
             return
         }
-        findMatchingPolicies(jssURL: jssURL, row: row, apiKey: apiKey)
+        findMatchingPoliciesV3(jssURL: jssURL, row: row, apiKey: apiKey)
         currentJJSCounter = currentJJSCounter + 1
         self.progressIndicator.doubleValue = Double(currentJJSCounter)
         if currentJJSCounter < jssCount {
@@ -416,81 +420,162 @@ class ViewController: NSViewController {
             })
         }
     }
-
-    func findMatchingPolicies(jssURL: String, row: Int, apiKey: String) {
-        var checkedJSSURL = jssURL
-        if checkedJSSURL.suffix(1) == "/" {
-            checkedJSSURL = String(jssURL.dropLast())
+    
+    func processJSS(){
+        if self.processedJSSCount == self.jssCount {
+            let csvText = self.policyReport.joined(separator: "\n")
+            DispatchQueue.main.async {
+                self.progressView.isHidden = true
+                let fileName = "Policy Search - " + self.policyToFind
+                self.saveToLocation(fileName: fileName, data: csvText)
+            }
         }
-        let jssURLQuery = checkedJSSURL + "/JSSResource/policies"
-        let url = URL(string: jssURLQuery)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    }
+    
+    func savePolicies(csvText: String){
+        DispatchQueue.main.async {
+            self.progressView.isHidden = true
+            if self.flushPolicies {
+                let fileName = "Policy Flush - " + self.policyToFind
+                self.saveToLocation(fileName: fileName, data: csvText)
+            } else {
+                let fileName = "Policy Search - " + self.policyToFind
+                self.saveToLocation(fileName: fileName, data: csvText)
+            }
+        }
+    }
+
+    
+    
+    //MARK: findMatchingPolices V3
+    func findMatchingPoliciesV3(jssURL: String, row: Int, apiKey: String) {
+        let checkedJSSURL = ParseURL(url: jssURL)
+        
+        //MARK: Find ALL Policies
+        jamfLogic.findAllPolicies(jamfServerURL: checkedJSSURL, apiKey: apiKey){ response in
             self.processedJSSCount = self.processedJSSCount + 1
-            guard error == nil && (response as? HTTPURLResponse)?.statusCode == 200 else {
-                if !self.flushPolicies {
-                    var statusCode = ""
-                    let response = response as? HTTPURLResponse
-                    if let sc = response {
-                        statusCode = String(sc.statusCode)
+            //print("processed - \(self.processedJSSCount) of \(self.jssCount)")
+            
+            switch response {
+                
+            case .success(let foundPolicies):
+                //MARK: Process Policies
+                self.policyLogic.processPolicy(foundPolicies: foundPolicies, policyToFind: self.policyToFind, checkedJSSURL: checkedJSSURL, apiKey: apiKey, flushPolicies: self.flushPolicies, instanceName: self.filteredDataToShow[row].name) { result in
+                    switch result {
+                        
+                    case .success(let report):
+                        self.policyReport.append(contentsOf: report)
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
+                    case .failure(let error):
+                        self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"" + "," + "N/A")
+                        if self.processedJSSCount == self.jssCount {
+                            let csvText = self.policyReport.joined(separator: "\n")
+                            self.savePolicies(csvText: csvText)
+                        }
                     }
-                    self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(statusCode)\"")
                 }
+               
+                break
+            case .failure(let error):
+                self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + checkedJSSURL + "," + "\"Error. \(error.statusCode) - \(error.localizedDescription)\"" + "," + "N/A")
                 if self.processedJSSCount == self.jssCount {
                     let csvText = self.policyReport.joined(separator: "\n")
-                    DispatchQueue.main.async {
-                        self.progressView.isHidden = true
-                        let fileName = "Policy Search - " + self.policyToFind
-                        self.saveToLocation(fileName: fileName, data: csvText)
-                    }
+                    self.savePolicies(csvText: csvText)
                 }
-                return
-            }
-            if let data = data {
-                let decoder = JSONDecoder()
-                if let myPolices = try? decoder.decode(Policies.self, from: data) {
-                    let foundPolices = myPolices.policies.filter{$0.name.lowercased().contains(self.policyToFind.lowercased())}
-                    var foundPolicesFormated = ""
-                    for policy in foundPolices {
-                        foundPolicesFormated = foundPolicesFormated + policy.name + "\r"
-                    }
-                    if foundPolices.count > 0 {
-                        if self.flushPolicies {
-                            for policy in foundPolices {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
-                                    self.flushMatchingPolicies(jssURL: jssURL, apiKey: apiKey, id: policy.id  )
-                                })
-                            }
-                        }
-                        if self.flushPolicies {
-                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed")
-                        } else {
-                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found")
-                        }
-                    } else {
-                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + ","  + "Not Found")
-                    }
-                    if self.processedJSSCount == self.jssCount {
-                        let csvText = self.policyReport.joined(separator: "\n")
-                        DispatchQueue.main.async {
-                            self.progressView.isHidden = true
-                            if self.flushPolicies {
-                                let fileName = "Policy Flush - " + self.policyToFind
-                                self.saveToLocation(fileName: fileName, data: csvText)
-                            } else {
-                                let fileName = "Policy Search - " + self.policyToFind
-                                self.saveToLocation(fileName: fileName, data: csvText)
-                            }
-                        }
-                    }
-                }
+                break
             }
         }
-        task.resume()
     }
+  
+    private func ParseURL(url: String) -> String {
+        var checkedJSSURL = url
+        if checkedJSSURL.contains("?failover") {
+            checkedJSSURL = checkedJSSURL.replacingOccurrences(of: "?failover", with: "")
+        }
+        if checkedJSSURL.suffix(1) == "/" {
+            checkedJSSURL = String(checkedJSSURL.dropLast())
+        }
+//        print(checkedJSSURL)
+        return checkedJSSURL
+    }
+    
+//    func findMatchingPolicies(jssURL: String, row: Int, apiKey: String) {
+//        var checkedJSSURL = jssURL
+//        if checkedJSSURL.suffix(1) == "/" {
+//            checkedJSSURL = String(jssURL.dropLast())
+//        }
+//        let jssURLQuery = checkedJSSURL + "/JSSResource/policies"
+//        let url = URL(string: jssURLQuery)!
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        request.setValue("Basic \(apiKey)", forHTTPHeaderField: "Authorization")
+//        request.setValue("application/json", forHTTPHeaderField: "Accept")
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            self.processedJSSCount = self.processedJSSCount + 1
+//            guard error == nil && (response as? HTTPURLResponse)?.statusCode == 200 else {
+//                if !self.flushPolicies {
+//                    var statusCode = ""
+//                    let response = response as? HTTPURLResponse
+//                    if let sc = response {
+//                        statusCode = String(sc.statusCode)
+//                    }
+//                    self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + "," + "\"Error. \(statusCode)\"")
+//                }
+//                if self.processedJSSCount == self.jssCount {
+//                    let csvText = self.policyReport.joined(separator: "\n")
+//                    DispatchQueue.main.async {
+//                        self.progressView.isHidden = true
+//                        let fileName = "Policy Search - " + self.policyToFind
+//                        self.saveToLocation(fileName: fileName, data: csvText)
+//                    }
+//                }
+//                return
+//            }
+//            if let data = data {
+//                let decoder = JSONDecoder()
+//                if let myPolices = try? decoder.decode(Policies.self, from: data) {
+//                    let foundPolices = myPolices.policies.filter{$0.name.lowercased().contains(self.policyToFind.lowercased())}
+//                    var foundPolicesFormated = ""
+//                    for policy in foundPolices {
+//                        foundPolicesFormated = foundPolicesFormated + policy.name + "\r"
+//                    }
+//                    if foundPolices.count > 0 {
+//                        if self.flushPolicies {
+//                            for policy in foundPolices {
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100) , execute: {
+//                                    self.flushMatchingPolicies(jssURL: jssURL, apiKey: apiKey, id: policy.id  )
+//                                })
+//                            }
+//                        }
+//                        if self.flushPolicies {
+//                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Flushed")
+//                        } else {
+//                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "\"\(foundPolicesFormated)\"" + "," + "Found")
+//                        }
+//                    } else {
+//                            self.policyReport.append("\"\(self.filteredDataToShow[row].name)\"" + "," + jssURL + "," + "" + ","  + "Not Found")
+//                    }
+//                    if self.processedJSSCount == self.jssCount {
+//                        let csvText = self.policyReport.joined(separator: "\n")
+//                        DispatchQueue.main.async {
+//                            self.progressView.isHidden = true
+//                            if self.flushPolicies {
+//                                let fileName = "Policy Flush - " + self.policyToFind
+//                                self.saveToLocation(fileName: fileName, data: csvText)
+//                            } else {
+//                                let fileName = "Policy Search - " + self.policyToFind
+//                                self.saveToLocation(fileName: fileName, data: csvText)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        task.resume()
+//    }
 
     func createAPIKeyfromUser(user: String, password: String) -> String {
         let loginData = String(format: "%@:%@", user, password).data(using: String.Encoding.utf8)!

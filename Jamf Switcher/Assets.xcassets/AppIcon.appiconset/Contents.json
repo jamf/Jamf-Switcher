@@ -1,71 +1,68 @@
 {
   "images" : [
     {
-      "size" : "16x16",
+      "filename" : "Jamf Switcher - 16x16.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-16x16.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "16x16"
     },
     {
-      "size" : "16x16",
+      "filename" : "Jamf Switcher - 32x32 1.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-32x32.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "16x16"
     },
     {
-      "size" : "32x32",
+      "filename" : "Jamf Switcher - 32x32.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-32x32-1.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "32x32"
     },
     {
-      "size" : "32x32",
+      "filename" : "Jamf Switcher - 64x64.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-64x64.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "32x32"
     },
     {
-      "size" : "128x128",
+      "filename" : "Jamf Switcher - 128x128.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-128x128.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "128x128"
     },
     {
-      "size" : "128x128",
+      "filename" : "Jamf Switcher - 256x256 1.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-256x256.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "128x128"
     },
     {
-      "size" : "256x256",
+      "filename" : "Jamf Switcher - 256x256.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-256x256-1.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "256x256"
     },
     {
-      "size" : "256x256",
+      "filename" : "Jamf Switcher - 512x512 1.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-512x512.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "256x256"
     },
     {
-      "size" : "512x512",
+      "filename" : "Jamf Switcher - 512x512.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-512x512-1.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "512x512"
     },
     {
-      "size" : "512x512",
+      "filename" : "Jamf Switcher - 1024x1024.png",
       "idiom" : "mac",
-      "filename" : "Jamf Switcher-1024x1024.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "512x512"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  },
-  "properties" : {
-    "pre-rendered" : true
+    "author" : "xcode",
+    "version" : 1
   }
 }
