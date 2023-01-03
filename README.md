@@ -1,4 +1,4 @@
-Copyright 2019 DATA JAR LTD
+Copyright 2022 DATA JAR LTD
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -30,15 +30,12 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 8. On a device with the Self Service Bookmarks in scope, download the [latest version of Jamf Switcher](https://github.com/dataJAR/Jamf-Switcher/releases/latest)
 
 9. Launch Jamf Switcher.
-
-10. On launch you might be asked to move to the Applications folder if not there already, please do so updates can be received:
-<p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.28.33.png" width="512"></p>
-11. Choose to check for updates automatically or not:
+10. Choose to check for updates automatically or not:
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2022.32.23.png" width="512"></p>
-12. Jamf Switcher should now load showing a window listing details from the Bookmarks with the DESCRIPTION (as set in step 3) in the format of:
+11. Jamf Switcher should now load showing a window listing details from the Bookmarks with the DESCRIPTION (as set in step 3) in the format of:
     - DISPLAY NAME - URL
 <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.00.35.png" height="512"></p>    
-13. Now you can either:
+12. Now you can either:
 
 - Select an entry and press CMD + O to open the URL in your default browser.
 - Double click & a window will appear which will either:
@@ -46,12 +43,13 @@ Jamf Switcher is an app which points either Jamf Pro applications or your defaul
 	* Open /Applications/Jamf Pro/ to allow you select a Jamf Pro application, if the Jamf Pro folder is in /Applications/Jamf Pro/ <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.10.31.png" width="512"></p>
         
 	* Open /Applications/, if the Jamf Pro folder cannot be found at /Applications/Jamf Pro/ <p align="center"><img src="/../assets/images/Screenshot%202019-10-31%20at%2020.06.38.png"></p>
-14. With an app selected, ~/Library/Preferences/com.jamfsoftware.jss.plist is amended as per:
+13. With an app selected, ~/Library/Preferences/com.jamfsoftware.jss.plist is amended as per:
 
 	- 'allowInvalidCertificate' is set to 'TRUE'
 	- 'url' is set to the URL of the entry selected
 
-15. The selected app is launched.
+14. The selected app is launched.
+15. In addition, pressing CMD + F will search each instance in the window for a policy based on a string entered, and CMD + OPTION +F will flush a policy matching the criteria entered.
 
 # Alternatives
 Other folks have created their own apps which reach the same end goal:

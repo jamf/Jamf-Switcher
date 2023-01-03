@@ -3,19 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C48283B9C400095A734 /* CallAPI.swift */; };
+		63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4A283B9CF70095A734 /* Constants.swift */; };
+		63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4C283B9EE80095A734 /* JamfAPI.swift */; };
+		63EF6C50283B9F2E0095A734 /* JamfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C4F283B9F2E0095A734 /* JamfService.swift */; };
+		63EF6C57283BA3040095A734 /* JamfLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C56283BA3040095A734 /* JamfLogic.swift */; };
+		63EF6C5B283BBA340095A734 /* PolicyLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF6C5A283BBA340095A734 /* PolicyLogic.swift */; };
 		798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798516F11F7AB0D400EF4C1D /* AppDelegate.swift */; };
 		798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798516F31F7AB0D400EF4C1D /* ViewController.swift */; };
 		798516F61F7AB0D400EF4C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798516F51F7AB0D400EF4C1D /* Assets.xcassets */; };
 		798516F91F7AB0D400EF4C1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798516F71F7AB0D400EF4C1D /* Main.storyboard */; };
 		79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E142882680E19100C71278 /* JamfSelfServiceParser.swift */; };
-		B51E892D25652D0400F6B621 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; };
-		B51E892E25652D0400F6B621 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B51E892B25652CE000F6B621 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B51E893125652D1700F6B621 /* LetsMove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51E892F25652D1500F6B621 /* LetsMove.framework */; };
-		B51E893225652D1700F6B621 /* LetsMove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B51E892F25652D1500F6B621 /* LetsMove.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B55C15622910195300715D7B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B55C15612910195300715D7B /* Sparkle */; };
 		B5916AD72534908E006F0C9B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5916AD62534908E006F0C9B /* Structures.swift */; };
 		B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C15A25253491C0006CFAC9 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
@@ -27,14 +30,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B51E892E25652D0400F6B621 /* Sparkle.framework in CopyFiles */,
-				B51E893225652D1700F6B621 /* LetsMove.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63EF6C48283B9C400095A734 /* CallAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPI.swift; sourceTree = "<group>"; };
+		63EF6C4A283B9CF70095A734 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		63EF6C4C283B9EE80095A734 /* JamfAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfAPI.swift; sourceTree = "<group>"; };
+		63EF6C4F283B9F2E0095A734 /* JamfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfService.swift; sourceTree = "<group>"; };
+		63EF6C56283BA3040095A734 /* JamfLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfLogic.swift; sourceTree = "<group>"; };
+		63EF6C5A283BBA340095A734 /* PolicyLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyLogic.swift; sourceTree = "<group>"; };
 		798516EE1F7AB0D400EF4C1D /* Jamf Switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jamf Switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		798516F11F7AB0D400EF4C1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		798516F31F7AB0D400EF4C1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,8 +50,6 @@
 		79E142882680E19100C71278 /* JamfSelfServiceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfSelfServiceParser.swift; sourceTree = "<group>"; };
 		7C72892C216D4512002DF3BA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jamf Switcher.entitlements"; sourceTree = "<group>"; };
-		B51E892B25652CE000F6B621 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		B51E892F25652D1500F6B621 /* LetsMove.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LetsMove.framework; sourceTree = "<group>"; };
 		B5916AD62534908E006F0C9B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		B5C15A25253491C0006CFAC9 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,18 +59,69 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B51E892D25652D0400F6B621 /* Sparkle.framework in Frameworks */,
-				B51E893125652D1700F6B621 /* LetsMove.framework in Frameworks */,
+				B55C15622910195300715D7B /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63EF6C46283B9C0A0095A734 /* JamfAPI */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C55283BA2F40095A734 /* Logic */,
+				63EF6C51283BA0D90095A734 /* Models */,
+				63EF6C4E283B9F220095A734 /* Service */,
+				63EF6C47283B9C310095A734 /* API */,
+				63EF6C4A283B9CF70095A734 /* Constants.swift */,
+			);
+			path = JamfAPI;
+			sourceTree = "<group>";
+		};
+		63EF6C47283B9C310095A734 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C48283B9C400095A734 /* CallAPI.swift */,
+				63EF6C4C283B9EE80095A734 /* JamfAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		63EF6C4E283B9F220095A734 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C4F283B9F2E0095A734 /* JamfService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		63EF6C51283BA0D90095A734 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5916AD62534908E006F0C9B /* Structures.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63EF6C55283BA2F40095A734 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C56283BA3040095A734 /* JamfLogic.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		63EF6C59283BBA220095A734 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				63EF6C5A283BBA340095A734 /* PolicyLogic.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 		798516E51F7AB0D400EF4C1D = {
 			isa = PBXGroup;
 			children = (
-				7C4B46CC236B801C00299621 /* Frameworks */,
 				798516F01F7AB0D400EF4C1D /* Jamf Switcher */,
 				798516EF1F7AB0D400EF4C1D /* Products */,
 			);
@@ -82,10 +138,11 @@
 		798516F01F7AB0D400EF4C1D /* Jamf Switcher */ = {
 			isa = PBXGroup;
 			children = (
+				63EF6C59283BBA220095A734 /* Logic */,
+				63EF6C46283B9C0A0095A734 /* JamfAPI */,
 				7C78BAB32376D55000A0580B /* Jamf Switcher.entitlements */,
 				798516F11F7AB0D400EF4C1D /* AppDelegate.swift */,
 				798516F31F7AB0D400EF4C1D /* ViewController.swift */,
-				B5916AD62534908E006F0C9B /* Structures.swift */,
 				798516F51F7AB0D400EF4C1D /* Assets.xcassets */,
 				798516F71F7AB0D400EF4C1D /* Main.storyboard */,
 				7C72892C216D4512002DF3BA /* Info.plist */,
@@ -93,15 +150,6 @@
 				79E142882680E19100C71278 /* JamfSelfServiceParser.swift */,
 			);
 			path = "Jamf Switcher";
-			sourceTree = "<group>";
-		};
-		7C4B46CC236B801C00299621 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B51E892F25652D1500F6B621 /* LetsMove.framework */,
-				B51E892B25652CE000F6B621 /* Sparkle.framework */,
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +170,9 @@
 			dependencies = (
 			);
 			name = "Jamf Switcher";
+			packageProductDependencies = (
+				B55C15612910195300715D7B /* Sparkle */,
+			);
 			productName = "JSS Switcher";
 			productReference = 798516EE1F7AB0D400EF4C1D /* Jamf Switcher.app */;
 			productType = "com.apple.product-type.application";
@@ -133,7 +184,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = dataJAR;
 				TargetAttributes = {
 					798516ED1F7AB0D400EF4C1D = {
@@ -157,6 +208,9 @@
 				Base,
 			);
 			mainGroup = 798516E51F7AB0D400EF4C1D;
+			packageReferences = (
+				B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = 798516EF1F7AB0D400EF4C1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,10 +257,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EF6C4D283B9EE80095A734 /* JamfAPI.swift in Sources */,
+				63EF6C5B283BBA340095A734 /* PolicyLogic.swift in Sources */,
 				798516F41F7AB0D400EF4C1D /* ViewController.swift in Sources */,
+				63EF6C50283B9F2E0095A734 /* JamfService.swift in Sources */,
 				B5C15A26253491C0006CFAC9 /* KeychainService.swift in Sources */,
+				63EF6C49283B9C400095A734 /* CallAPI.swift in Sources */,
 				B5916AD72534908E006F0C9B /* Structures.swift in Sources */,
+				63EF6C4B283B9CF70095A734 /* Constants.swift in Sources */,
 				79E142892680E19100C71278 /* JamfSelfServiceParser.swift in Sources */,
+				63EF6C57283BA3040095A734 /* JamfLogic.swift in Sources */,
 				798516F21F7AB0D400EF4C1D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +320,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "";
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -277,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -321,6 +382,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "";
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -332,10 +394,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -347,13 +410,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 110;
+				CURRENT_PROJECT_VERSION = 140;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -372,13 +437,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 110;
+				CURRENT_PROJECT_VERSION = 140;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 82K2XFN8L6;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				INFOPLIST_FILE = "Jamf Switcher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -411,6 +478,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				branch = 2.x;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B55C15612910195300715D7B /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B55C15602910195300715D7B /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 798516E61F7AB0D400EF4C1D /* Project object */;
 }
