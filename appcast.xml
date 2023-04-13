@@ -3,8 +3,12 @@
     <channel>
         <item>
             <sparkle:channel>beta</sparkle:channel>
-            <title>Version 1.4.1-beta1</title>
+            <title>Version 1.5-beta1</title>
             <description><![CDATA[
+                <h2>1.5-beta1 (build 148)</h2>
+                <p>Changes in this release:</p>
+                <li>Added support fot the new randomly generated SSO failover URL's introduced with Jamf Pro 10.45.0</li>
+                <li>Due to the above, the minimum OS version has been changed to macOS 13.0, as regex is now used to derive the URL</li>
                 <h2>1.4.1-beta1 (build 147)</h2>
                 <p>Changes in this release:</p>
                 <li>Correctly parses bookmarks with either: Jamf, JPS or JSS within the description.</li>
@@ -49,13 +53,13 @@
                 <h2>1.0 (build 40)</h2>
                 <li>Release!</li>]]>
             </description>
-            <pubDate>Tuesday, 03 January 2023 15:15 +0000</pubDate>
-            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.4.1-beta1/Jamf.Switcher.zip"
-            sparkle:version="147"
-            length="5067676"
+            <pubDate>Thursday, 13 April 2023 09:50 +0000</pubDate>
+            <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.5-beta1/Jamf.Switcher.zip"
+            sparkle:version="148"
+            length="1666313"
             type="application/octet-stream"
-            sparkle:edSignature="qM9ERZm6MWQYV/5/4dCyLomjMq0AswHFZUajlfCnSr63tuVrSVI/GhMNuC/MqW3gQqiYTVsfJOb6Od1nWzBQBg==" />
-            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            sparkle:edSignature="JiUpGI4+4fdmA4G8rUGBzg9M2/34V1a1pvCtj44cFRbjzGwyrvmvZL4IB5uVxizTEK4ikmBzkusVWXsx2q44Dg==" />
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
         </item>
     </channel>
     <channel>
