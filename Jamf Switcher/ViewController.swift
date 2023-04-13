@@ -93,7 +93,7 @@ class ViewController: NSViewController {
         panel.directoryURL = getDocumentsDirectory()
         
         panel.beginSheetModal(for: self.view.window!) { (result) -> Void in
-            if result.rawValue == NSFileHandlingPanelOKButton
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue
             {
                 guard let url = panel.url else { return }
                 do {
@@ -127,7 +127,7 @@ class ViewController: NSViewController {
 
     func processSelection() {
         let stringSelected = filteredDataToShow[itemsSelected]
-        let url = stringSelected.url.replacingOccurrences(of: "/?failover", with: "")
+        let url = stringSelected.url.replacing(/\/\?failover.*/, with:"")
         let userDefaultsValue = UserDefaults(suiteName: "com.jamfsoftware.jss")
         userDefaultsValue?.set(true, forKey: "allowInvalidCertificate")
         userDefaultsValue?.set(url, forKey: "url")
@@ -493,7 +493,7 @@ class ViewController: NSViewController {
     private func ParseURL(url: String) -> String {
         var checkedJSSURL = url
         if checkedJSSURL.contains("?failover") {
-            checkedJSSURL = checkedJSSURL.replacingOccurrences(of: "?failover", with: "")
+            checkedJSSURL = checkedJSSURL.replacing(/\/\?failover.*/, with:"")
         }
         if checkedJSSURL.suffix(1) == "/" {
             checkedJSSURL = String(checkedJSSURL.dropLast())
