@@ -116,9 +116,9 @@
             <pubDate>Wednesday, 19 April 2023 11:00 +0000</pubDate>
             <enclosure url="https://github.com/dataJAR/Jamf-Switcher/releases/download/1.5/Jamf.Switcher.zip"
             sparkle:version="148"
-            length="1666313"
+            length="1797003"
             type="application/octet-stream"
-            sparkle:edSignature="JiUpGI4+4fdmA4G8rUGBzg9M2/34V1a1pvCtj44cFRbjzGwyrvmvZL4IB5uVxizTEK4ikmBzkusVWXsx2q44Dg==" />
+            sparkle:edSignature="yLb2g9ToHxvhFv9lRGOLXkt5F7Lu3VX3Yksovi3M8R59Tgt+2bi3Wf74lgF3/bYCFHRHS/ntHvy8RZ6ghDlPAw==" />
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
         </item>
     </channel>
